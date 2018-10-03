@@ -98,7 +98,25 @@ server {
     }
 ```
 
-## Default create-react-app README
+## Proposed modules
+
+1. Main page
+    * Search bar
+    * Navigation bar
+    * Left panel
+        * Avatar
+        * controls/categories?
+    * Main content canvas?
+
+1. Sign on panel
+    * login
+    * register
+
+1. Personal management page
+    * orders
+    * accounts
+
+## ----------- Default create-react-app README
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

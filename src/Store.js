@@ -1,12 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
 import { reducer as sampleReducer } from "./samplemodule";
-// import {reducer as filterReducer} from './filter';
+import { reducer as loginReducer } from "./login";
 
 const win = window;
 
 const reducer = combineReducers({
-  samplemodule: sampleReducer
+  samplemodule: sampleReducer,
+  login: loginReducer
 });
 
 const middlewares = [];

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { registerLogin } from "../actions";
 
@@ -28,6 +29,7 @@ class Register extends Component {
           <Input type="text" name="lastname" placeholder="Last Name" />
           <Input type="text" name="email" placeholder="email" />
           <button>Submit</button>
+          <Link to="/login">Go back to login</Link>
         </form>
       </div>
     );

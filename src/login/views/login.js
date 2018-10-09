@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { submitLogin } from "../actions";
 
@@ -26,6 +27,7 @@ class Login extends Component {
           <Input type="text" name="username" placeholder="username" />
           <Input type="password" name="password" placeholder="password" />
           <button>Sign In</button>
+          <Link to="/register">Register</Link>
         </form>
       </div>
     );

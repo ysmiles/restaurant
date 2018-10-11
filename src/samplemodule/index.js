@@ -1,5 +1,6 @@
-import * as actions from "./actions.js";
+// import * as actions from "./actions.js";
 import reducer from "./reducer.js";
 import view from "./views/shoppingList";
 
-export { actions, reducer, view };
+// export { actions, reducer, view };
+export { reducer, view };

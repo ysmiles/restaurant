@@ -4,6 +4,21 @@ Mainly for the front-end of restaurant order delivery project.
 
 The original [create-react-app](https://github.com/facebook/create-react-app) content belongs to Facebook under MIT license.
 
+## Table of contents
+
+<!-- TOC -->
+
+- [Table of contents](#table-of-contents)
+- [Proposed modules design](#proposed-modules-design)
+- [Production related settings and HTTP server examples](#production-related-settings-and-http-server-examples)
+    - [Build for production](#build-for-production)
+    - [Node `serve` as a simple http server](#node-serve-as-a-simple-http-server)
+    - [One way to call API address (usually proxy settings required)](#one-way-to-call-api-address-usually-proxy-settings-required)
+    - [Webpack HTTP server (come with create-react-app) with proxy](#webpack-http-server-come-with-create-react-app-with-proxy)
+    - [Nginx with proxy](#nginx-with-proxy)
+
+<!-- /TOC -->
+
 ## Proposed modules design
 
 1. Main page
@@ -24,7 +39,9 @@ The original [create-react-app](https://github.com/facebook/create-react-app) co
    - orders
    - accounts
 
-## Build for production
+## Production related settings and HTTP server examples
+
+### Build for production
 
 To use "node serve" or [Nginx](https://nginx.org) serving this React app, we need run building process:
 
@@ -34,7 +51,7 @@ npm run build
 
 The generated files will goto `build` folder.
 
-## Node serve as a simple http server
+### Node `serve` as a simple http server
 
 The `serve` package can easily serve a static site.
 
@@ -43,7 +60,7 @@ npm install -g serve
 serve build # build is the folder name
 ```
 
-## The way to call other address in React
+### One way to call API address (usually proxy settings required)
 
 One way in React codes is that we can let browser call `fetch` to other back-end API.
 
@@ -66,9 +83,9 @@ componentDidMount() {
 }
 ```
 
-## Webpack HTTP server
+### Webpack HTTP server (come with create-react-app) with proxy
 
-When we are developping, we can use
+When we are developing, we can use
 
 ```sh
 npm install
@@ -80,7 +97,7 @@ to run a temporary HTTP server.
 It can support HTTP proxy by adding this line to `package.json`.
 
 ```json
-  "proxy": "http://dataserver.com"
+"proxy": "http://dataserver.com"
 ```
 
 Then it will forward unknown content to the proxy address.
@@ -94,7 +111,7 @@ You can also check the server details by
 npm run eject
 ```
 
-## Nginx as HTTP server
+### Nginx with proxy
 
 Nginx is a more powerful and full-featured HTTP server.
 

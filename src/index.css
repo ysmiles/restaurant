@@ -1,5 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  width: 100%;
+  background-color: rgb(203, 247, 255);
+}
+
+.page-container {
+  width: 1000px;
+  margin: 10px auto;
+  padding: 30px;
+  background-color: white;
+}
+
+.food-listing {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.food-listing .food-list-item {
+  padding: 10px 30px;
+  width: 200px;
 }

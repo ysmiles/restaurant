@@ -66,7 +66,7 @@ create table Restaurant_business_hours(
 	workday int not null,
 	open_time time not null,
 	close_time time not null,
-	constraint unique(restaurant_id, workday),
+	primary key (restaurant_id, workday),
 	foreign key (restaurant_id) references Restaurant(restaurant_id)
 );
 	

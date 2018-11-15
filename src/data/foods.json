@@ -1,0 +1,22 @@
+{
+  "foods": [
+    {
+      "id": 1,
+      "name": "X",
+      "description": "This is good",
+      "keywords": ["abc", "def", "xyz"],
+      "image": "1-a.jpg",
+      "age": ["0", "+"],
+      "price": 10.24
+    },
+    {
+      "id": 2,
+      "name": "Y",
+      "description": "This is also good",
+      "keywords": ["abc", "cba", "qqq"],
+      "image": "2-b.jpg",
+      "age": ["33", "66"],
+      "price": 20.48
+    }
+  ]
+}

@@ -1,17 +1,17 @@
-import React from "react";
-import Login from "./login";
-import Register from "./register";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React from 'react';
+import Login from './login';
+import Register from './register';
+import { Switch, Route } from 'react-router-dom';
 // import "./style.css";
 
 export default () => {
   return (
-    <Router>
-      <div className="loginpage">
-        <Route exact path="/" component={Login} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-      </div>
-    </Router>
+    <div className="login-page">
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        {/* <Route path="/register" component={Register} /> */}
+      </Switch>
+    </div>
   );
 };

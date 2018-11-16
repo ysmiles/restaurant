@@ -88,7 +88,7 @@ create table Orders(
 	customer_id int not null,
 	driver_id int not null,
 	payment_method_id int not null,
-	shipping_fee decimal(7,2) not null,
+	delivery_fee decimal(7,2) not null,
 	tax decimal(7,2) not null,
 	address varchar(200) not null,
 	order_time timestamp not null,

@@ -1,17 +1,30 @@
 const sequelize = require('../dbs/sequelize')
 
+// The data model corresponding to Customer in DB
 const User = sequelize.define('user', {
-    id: {
-        type: Sequelize.STRING(50),
-        primaryKey: true
+    customer_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
     },
-    name: Sequelize.STRING(100),
-    gender: Sequelize.BOOLEAN,
-    birth: Sequelize.STRING(10),
+    first_name: { type: Sequelize.STRING(40), allowNull: false },
+    last_name: { type: Sequelize.STRING(30), allowNull: false },
+    phone_number: { type: Sequelize.STRING(15), allowNull: false },
+    email: { type: Sequelize.STRING(50), allowNull: false, unique: true },
+    password: { type: Sequelize.STRING(64), allowNull: false },
+    create_time: { 
+        type: 'TIMESTAMP', 
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    }
+    /*
     createdAt: Sequelize.BIGINT,
     updatedAt: Sequelize.BIGINT,
     version: Sequelize.BIGINT
+    */
 }, {
+        // disable the default timestamp
         // don't add the timestamp attributes (updatedAt, createdAt)
         timestamps: false,
 
@@ -21,7 +34,7 @@ const User = sequelize.define('user', {
         freezeTableName: true,
 
         // define the table's name
-        tableName: 'my_very_custom_table_name',
+        tableName: 'Customer',
     });
 
 module.exports = User

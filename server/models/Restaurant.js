@@ -1,16 +1,25 @@
 const sequelize = require('../dbs/sequelize')
 
 const Restaurant = sequelize.define('restaurant', {
-    id: {
-        type: Sequelize.STRING(50),
-        primaryKey: true
+    restaurant_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
     },
-    name: Sequelize.STRING(100),
-    gender: Sequelize.BOOLEAN,
-    birth: Sequelize.STRING(10),
-    createdAt: Sequelize.BIGINT,
-    updatedAt: Sequelize.BIGINT,
-    version: Sequelize.BIGINT
+    name: { type: Sequelize.STRING(50), allowNull: false },
+    // The photo colomuns may not necessary
+    photo: Sequelize.STRING(200),
+    phone_number: { type: Sequelize.STRING(15), allowNull: false },
+    address: { type: Sequelize.STRING(200), allowNull: false },
+    earning: { type: Sequelize.DECIMAL(10, 2), allowNull: false, defaultValue: 0 },
+    email: { type: Sequelize.STRING(50), allowNull: false, unique: true },
+    password: { type: Sequelize.STRING(64), allowNull: false },
+    create_time: { 
+        type: 'TIMESTAMP', 
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    }
 }, {
         // don't add the timestamp attributes (updatedAt, createdAt)
         timestamps: false,
@@ -21,7 +30,7 @@ const Restaurant = sequelize.define('restaurant', {
         freezeTableName: true,
 
         // define the table's name
-        tableName: 'my_very_custom_table_name',
+        tableName: 'Restaurant',
     });
 
 module.exports = Restaurant

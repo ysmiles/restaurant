@@ -1,16 +1,36 @@
 const sequelize = require('../dbs/sequelize')
 
 const Food = sequelize.define('restaurant', {
-    id: {
-        type: Sequelize.STRING(50),
-        primaryKey: true
+    restaurant_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+
+        // add composite unique key to meet the constraint unique requiremet for restaurant_id & name in database
+        unique: 'restaurantAndName',
+
+        // reference id to restauran model
+        references: {
+            model: Restaurant,
+            key: restaurant_id
+        }
     },
-    name: Sequelize.STRING(100),
-    gender: Sequelize.BOOLEAN,
-    birth: Sequelize.STRING(10),
-    createdAt: Sequelize.BIGINT,
-    updatedAt: Sequelize.BIGINT,
-    version: Sequelize.BIGINT
+    item_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: { 
+        type: Sequelize.STRING(50), 
+        allowNull: false,
+        // constraint unique with restaurant_id
+        unique: 'restaurantAndName'
+     },
+    // photo column may be not necessary
+    photo: Sequelize.STRING(200),
+    prepare_time: { type: Sequelize.INTEGER, allowNull: false },
+    unit_price: { type: Sequelize.DECIMAL(4, 2), allowNull: false },
+    deleted: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
 }, {
         // don't add the timestamp attributes (updatedAt, createdAt)
         timestamps: false,
@@ -21,7 +41,7 @@ const Food = sequelize.define('restaurant', {
         freezeTableName: true,
 
         // define the table's name
-        tableName: 'my_very_custom_table_name',
+        tableName: 'Item',
     });
 
 module.exports = Food

@@ -1,8 +1,8 @@
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `checkRestaurantEmailExisted`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `checkRestaurantEmailExisted` (
     IN in_email VARCHAR(50))
 BEGIN
@@ -15,11 +15,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `registerRestaurant`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `registerRestaurant` (
     IN in_name VARCHAR(50),
     IN in_photo VARCHAR(200),
@@ -36,11 +36,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `loginRestaurant`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `loginRestaurant` (
     IN in_email VARCHAR(50),
     IN in_password VARCHAR(64))
@@ -54,11 +54,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `updateRestaurant`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `updateRestaurant` (
 	IN in_restaurant_id INT,
     IN in_name VARCHAR(50),
@@ -76,11 +76,11 @@ END$$
 DELIMITER ;
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `addBusinessHours`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `addBusinessHours` (
 	IN in_restaurant_id INT,
     IN in_workday INT,
@@ -95,11 +95,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `updateBusinessHours`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `updateBusinessHours` (
 	IN in_restaurant_id INT,
     IN in_workday INT,
@@ -115,11 +115,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `deleteBusinessHours`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `deleteBusinessHours` (
 	IN in_restaurant_id INT,
     IN in_workday INT)
@@ -132,11 +132,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `checkItemExisted`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `checkItemExisted` (
 	IN in_restaurant_id INT,
     IN in_name VARCHAR(50))
@@ -150,11 +150,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `uploadItem`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `uploadItem` (
 	IN in_restaurant_id INT,
     IN in_name VARCHAR(50),
@@ -170,11 +170,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `updateItem`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `updateItem` (
 	IN in_restaurant_id INT,
     IN in_name VARCHAR(50),
@@ -191,11 +191,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `deleteItem`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `deleteItem` (
 	IN in_restaurant_id INT,
     IN in_name VARCHAR(50))
@@ -209,11 +209,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `showItemRestaurantMode`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `showItemRestaurantMode` (
 	IN in_restaurant_id INT)
 BEGIN
@@ -226,11 +226,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `showRestaurantActiveOrders`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `showRestaurantActiveOrders` (
 	IN in_restaurant_id INT)
 BEGIN
@@ -243,11 +243,11 @@ END$$
 DELIMITER ;
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `updateRestaurantActiveOrders`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `updateRestaurantActiveOrders` (
 	IN in_restaurant_id INT,
 	IN in_orders_id VARCHAR(13))
@@ -261,11 +261,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `showRestaurantReadyOrders`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `showRestaurantReadyOrders` (
 	IN in_restaurant_id INT)
 BEGIN
@@ -279,11 +279,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `updateRestaurantReadyOrders`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `updateRestaurantReadyOrders` (
 	IN in_restaurant_id INT,
 	IN in_orders_id VARCHAR(13))
@@ -297,11 +297,11 @@ DELIMITER ;
 
 
 
-USE `cmpe295`;
+USE `foodelivery`;
 DROP procedure IF EXISTS `showRestaurantOrdersHistory`;
 
 DELIMITER $$
-USE `cmpe295`$$
+USE `foodelivery`$$
 CREATE PROCEDURE `showRestaurantOrdersHistory` (
 	IN in_restaurant_id INT)
 BEGIN

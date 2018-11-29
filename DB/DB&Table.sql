@@ -1,7 +1,7 @@
 SET foreign_key_checks = 1;
-drop database if exists cmpe295;
-create database cmpe295;
-use cmpe295;
+drop database if exists foodelivery;
+create database foodelivery;
+use foodelivery;
 
 create table Customer(
 	customer_id int not null auto_increment,

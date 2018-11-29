@@ -1,4 +1,4 @@
-use cmpe295;
+use foodelivery;
 
 /* data in Customer */
 insert into Customer (first_name, last_name, phone_number, email, password, create_time) 

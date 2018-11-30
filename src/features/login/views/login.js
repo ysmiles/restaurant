@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { registerLogin } from "../actions";
+import { submitLogin } from '../actions';
 
-class Register extends Component {
+class Login extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -22,14 +22,12 @@ class Register extends Component {
   render() {
     return (
       <div>
+        <Logo />
         <form onSubmit={this.onSubmit}>
           <Input type="text" name="username" placeholder="username" />
           <Input type="password" name="password" placeholder="password" />
-          <Input type="text" name="firstname" placeholder="First Name" />
-          <Input type="text" name="lastname" placeholder="Last Name" />
-          <Input type="text" name="email" placeholder="email" />
-          <button>Submit</button>
-          <Link to="/login">Go back to login</Link>
+          <button>Sign In</button>
+          <Link to="/register">Register</Link>
         </form>
       </div>
     );
@@ -53,14 +51,22 @@ class Input extends Component {
   }
 }
 
-Register.propTypes = {
-  //   onRegister: PropTypes.func.isRequired
+const Logo = () => {
+  return (
+    <div className="logo">
+      <span>This is the logo</span>
+    </div>
+  );
+};
+
+Login.propTypes = {
+  // onLogin: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onRegister: userinfo => {
-      dispatch(registerLogin(userinfo));
+    onLogin: userinfo => {
+      dispatch(submitLogin(userinfo));
     }
   };
 };
@@ -68,4 +74,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(Register);
+)(Login);

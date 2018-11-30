@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import { reducer as loginReducer } from './login';
-import cartReducer from './features/cart/reducer';
+import { reducer as loginReducer } from './features/login';
+import { reducer as cartReducer } from './features/cart';
 
 // const win = window;
 

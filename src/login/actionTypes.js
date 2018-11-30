@@ -1,2 +1,0 @@
-export const SUBMIT_LOGIN = "LOGIN/SUBMIT";
-export const REGISTER_LOGIN = "LOGIN/REGISTER";

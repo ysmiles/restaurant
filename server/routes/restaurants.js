@@ -2,8 +2,6 @@ const router = require('koa-router')()
 const Restaurant = require('../models/Restaurant')
 const config = require('../config')
 
-// all return obejcts will be converted to JSON
-const json = require('koa-json')
 
 // disable the predix style, adjust to REST
 // router.prefix('/restaurants')

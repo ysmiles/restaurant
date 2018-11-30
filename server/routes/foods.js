@@ -1,8 +1,6 @@
 const router = require('koa-router')()
 const Food = require('../models/Food')
 
-// all return obejcts will be converted to JSON
-const json = require('koa-json')
 
 // disable the prefix setting
 //router.prefix('/foods')

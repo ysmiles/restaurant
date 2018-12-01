@@ -1,4 +1,4 @@
-import { SUBMIT_LOGIN, REGISTER_LOGIN } from "./actionTypes";
+import { SUBMIT_LOGIN, REGISTER_LOGIN } from './actionTypes';
 
 export const submitLogin = userinfo => ({
   type: SUBMIT_LOGIN,

@@ -1,14 +1,18 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import { reducer as loginReducer } from './login';
-import cartReducer from './features/cart/reducer';
+import { reducer as loginReducer } from './features/login';
+import { reducer as cartReducer } from './features/cart';
+import { reducer as foodsReducer } from './features/food-listing';
+import { reducer as formReducer } from 'redux-form';
 
 // const win = window;
 
 // root reducer
 const reducer = combineReducers({
   login: loginReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  foods: foodsReducer,
+  form: formReducer
 });
 
 const middlewares = [];

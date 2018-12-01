@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "husky": "^1.1.2",
+    "isomorphic-fetch": "^2.2.1",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3",
     "react": "^16.5.2",
@@ -16,7 +17,8 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-form": "^7.4.2"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
@@ -30,5 +32,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

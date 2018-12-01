@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { submitLogin } from "../actions";
+import { submitLogin } from '../actions';
 
 class Login extends Component {
   constructor(props, context) {
@@ -21,7 +21,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Login">
         <Logo />
         <form onSubmit={this.onSubmit}>
           <Input type="text" name="username" placeholder="username" />

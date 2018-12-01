@@ -2,8 +2,6 @@ const router = require('koa-router')()
 const Restaurant = require('../models/Restaurant')
 const config = require('../config')
 
-// all return obejcts will be converted to JSON
-const json = require('koa-json')
 
 // disable the predix style, adjust to REST
 // router.prefix('/restaurants')
@@ -11,7 +9,7 @@ const json = require('koa-json')
 router.get('/restaurant', async (ctx, next) => {
 	//ctx.body = 'this is a users/bar response'
 
-	// /restaurant/?id=restaurantID
+	// /restaurant/?restaurantId=xx
 	// redirected to specific restaurant food list
 	if (ctx.query.restaurantId) {
 		console.log('restaurantID: ' + ctx.query.restaurantId)

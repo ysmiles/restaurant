@@ -1,6 +1,7 @@
 const sequelize = require('../dbs/sequelize')
+const Restaurant = require('./Restaurant')
 
-const Food = sequelize.define('restaurant', {
+const Food = sequelize.define('Restaurant', {
     restaurant_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -30,7 +31,7 @@ const Food = sequelize.define('restaurant', {
     photo: Sequelize.STRING(200),
     prepare_time: { type: Sequelize.INTEGER, allowNull: false },
     unit_price: { type: Sequelize.DECIMAL(4, 2), allowNull: false },
-    deleted: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
+    deleted: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
 }, {
         // don't add the timestamp attributes (updatedAt, createdAt)
         timestamps: false,

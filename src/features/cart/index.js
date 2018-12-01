@@ -1,6 +1,6 @@
 // import * as actions from "./actions";
 import reducer from './reducer';
-import view from './views/router';
+import view from './views/cart';
 
 // export { actions, reducer, view };
 export { reducer, view };

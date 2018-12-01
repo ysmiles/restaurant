@@ -21,7 +21,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Register">
         <form onSubmit={this.onSubmit}>
           <Input type="text" name="username" placeholder="username" />
           <Input type="password" name="password" placeholder="password" />

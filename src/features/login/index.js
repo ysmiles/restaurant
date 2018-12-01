@@ -1,5 +1,9 @@
 import * as actions from './actions';
 import reducer from './reducer';
-import view from './views/router';
+
+import Login from './views/login';
+import Register from './views/register';
+
+const view = { login: Login, register: Register };
 
 export { actions, reducer, view };

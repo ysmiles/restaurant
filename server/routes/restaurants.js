@@ -9,7 +9,7 @@ const config = require('../config')
 router.get('/restaurant', async (ctx, next) => {
 	//ctx.body = 'this is a users/bar response'
 
-	// /restaurant/?id=restaurantID
+	// /restaurant/?restaurantId=xx
 	// redirected to specific restaurant food list
 	if (ctx.query.restaurantId) {
 		console.log('restaurantID: ' + ctx.query.restaurantId)

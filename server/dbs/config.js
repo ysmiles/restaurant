@@ -1,6 +1,6 @@
 // raw mysql connection configuration
 
-var config = {
+const config = {
     database: 'database',
     username: 'user', 
     password: 'password', 

@@ -5,7 +5,7 @@ import RemoveButton from './remove-button';
 
 export default function FoodListItem(props) {
   return (
-    <div className="food-list-item">
+    <div className="Food-list-item">
       <h3>{props.food.name}</h3>
       <img
         height={100}

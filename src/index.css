@@ -10,21 +10,41 @@ body {
   background-color: rgb(203, 247, 255);
 }
 
-.page-container {
+.Page-container {
   width: 1000px;
   margin: 10px auto;
   padding: 30px;
   background-color: white;
+  position: relative;
 }
 
-.food-listing {
+.Food-listing {
   display: flex;
   flex: 1;
   flex-wrap: wrap;
   flex-direction: row;
 }
 
-.food-listing .food-list-item {
+.Food-listing .Food-list-item {
   padding: 10px 30px;
   width: 200px;
+}
+
+ul.Top-menu {
+  position: absolute;
+  right: 50px;
+  top: 50px;
+}
+
+ul.Top-menu li {
+  display: inline-block;
+}
+
+ul.Top-menu li:before {
+  content: '|';
+  margin: 0 4px;
+}
+
+ul.Top-menu li:nth-child(1):before {
+  content: '';
 }

@@ -1,12 +1,11 @@
 const sequelize = require('../dbs/sequelize')
 
 // The data model corresponding to Customer in DB
-const User = sequelize.define('User', {
-    customer_id: {
-        type: Sequelize.INTEGER,
+const Orders = sequelize.define('Orders', {
+    orders_id: {
+        type: Sequelize.STRING(13),
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
     },
     first_name: { type: Sequelize.STRING(40), allowNull: false },
     last_name: { type: Sequelize.STRING(30), allowNull: false },
@@ -34,7 +33,7 @@ const User = sequelize.define('User', {
         freezeTableName: true,
 
         // define the table's name
-        tableName: 'Customer',
+        tableName: 'Orders',
     });
 
-module.exports = User
+module.exports = Orders

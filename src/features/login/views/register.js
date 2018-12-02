@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { registerLogin } from "../actions";
+import { registerLogin } from '../actions';
 
 class Register extends Component {
   constructor(props, context) {
@@ -21,7 +21,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Register">
         <form onSubmit={this.onSubmit}>
           <Input type="text" name="username" placeholder="username" />
           <Input type="password" name="password" placeholder="password" />

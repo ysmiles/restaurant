@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const sequelize = require('../dbs/sequelize')
 const Orders = require('./Orders')
 const Food = require('./Food')
@@ -10,7 +11,7 @@ const Orders_item = sequelize.define('Orders_item', {
         primaryKey: true,
         references: {
             model: Orders,
-            key: orders_id
+            key: 'orders_id'
         }
     },
     item_id: {
@@ -19,7 +20,7 @@ const Orders_item = sequelize.define('Orders_item', {
         primaryKey: true,
         references: {
             model: Food,
-            key: item_id
+            key: 'item_id'
         }
     },
     quantity: { type: Sequelize.INTEGER, allowNull: false },

@@ -1,4 +1,5 @@
-const router = require('koa-router')()
+const Router = require('koa-router');
+const router = new Router();
 const Restaurant = require('../models/Restaurant')
 const config = require('../config')
 
@@ -9,7 +10,7 @@ const config = require('../config')
 router.get('/restaurant', async (ctx, next) => {
 	//ctx.body = 'this is a users/bar response'
 
-	// /restaurant/?restaurantId=xx
+	// /restaurant?restaurantId=xx
 	// redirected to specific restaurant food list
 	if (ctx.query.restaurantId) {
 		console.log('restaurantID: ' + ctx.query.restaurantId)

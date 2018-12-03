@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const sequelize = require('../dbs/sequelize')
 
 const Restaurant = sequelize.define('Restaurant', {

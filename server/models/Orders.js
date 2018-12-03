@@ -1,4 +1,8 @@
+const Sequelize = require('sequelize');
 const sequelize = require('../dbs/sequelize')
+const User = require('./User')
+const Driver = require('./Driver')
+const Payment = require('./Payment')
 
 // The data model corresponding to Customer in DB
 const Orders = sequelize.define('Orders', {
@@ -7,21 +11,33 @@ const Orders = sequelize.define('Orders', {
         allowNull: false,
         primaryKey: true,
     },
-    first_name: { type: Sequelize.STRING(40), allowNull: false },
-    last_name: { type: Sequelize.STRING(30), allowNull: false },
-    phone_number: { type: Sequelize.STRING(15), allowNull: false },
-    email: { type: Sequelize.STRING(50), allowNull: false, unique: true },
-    password: { type: Sequelize.STRING(64), allowNull: false },
-    create_time: { 
-        type: 'TIMESTAMP', 
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-        allowNull: false
-    }
-    /*
-    createdAt: Sequelize.BIGINT,
-    updatedAt: Sequelize.BIGINT,
-    version: Sequelize.BIGINT
-    */
+    customer_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: User,
+            key: 'customer_id'
+        }
+    },
+    driver_id: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: Driver,
+            key: 'driver_id'
+        }
+    },
+    payment_method_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: Payment,
+            key: 'payment_method_id'
+        }
+    },
+    total_price: { type: Sequelize.DECIMAL(8, 2), allowNull: false },
+    address: { type: Sequelize.STRING(200), allowNull: false },
+    order_time: { type: 'TIMESTAMP', allowNull: false },
+    delivery_time: { type: 'TIMESTAMP' },
 }, {
         // disable the default timestamp
         // don't add the timestamp attributes (updatedAt, createdAt)

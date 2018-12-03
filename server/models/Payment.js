@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const sequelize = require('../dbs/sequelize')
 const User = require('./User')
 
@@ -14,7 +15,7 @@ const Payment = sequelize.define('Payment', {
         unique: 'idAndNum',
         references: {
             model: User,
-            key: customer_id
+            key: 'customer_id'
         }
     },
     customer_number: {

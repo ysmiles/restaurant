@@ -27,8 +27,8 @@ yarn-error.log*
 package-lock.json
 
 # server subdir
-/server/node_modules
-/server/package-lock.json
+server/node_modules
+server/package-lock.json
 
 # database & server config 
-/server/dbs/config.js
+server/dbs/config.js

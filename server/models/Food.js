@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../dbs/sequelize')
 const Restaurant = require('./Restaurant')
 
-const Food = sequelize.define('Restaurant', {
+const Food = sequelize.define('Food', {
     restaurant_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

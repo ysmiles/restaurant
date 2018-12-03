@@ -9,7 +9,8 @@ const Food = require('../models/Food')
 
 // all get method 
 router
-  .get('/foods', async (ctx, next) => {
+  .get('/foods', async (ctx) => {
+    console.log('find foods...')
 
     let queryProps = { where: {} }
 
@@ -43,12 +44,11 @@ router
     }
 
 
-    Food
+    let res = await Food
       .findAll(queryProps)
-      .then(result => {
-        ctx.body = result
-      })
       .catch(err => console.log(err))
+
+    ctx.body = res
 
     return
   })
@@ -99,15 +99,12 @@ router
       return
     }
 
-    Food
-      .findById(ctx.query.foodID)
-      .then(found => {
-        return found.destroy({ force: true })
-      })
-      .then(() => console.log('Deleted: ' + ctx.query.foodID))
-      .catch(err => console.log(err))
-    
-      return
+    try {
+      let found = await Food.findById(ctx.query.foodId)
+      return found.destroy({ force: true })
+    } catch (err) {
+      console.log(err)
+    }
   })
 
   .all('/foods', async (ctx) => {

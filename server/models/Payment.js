@@ -1,7 +1,8 @@
-const Sequelize = require('../dbs/sequelize')
+const Sequelize = require('sequelize');
+const sequelize = require('../dbs/sequelize')
 const User = require('./User')
 
-const Payment = Sequelize.define('Payment', {
+const Payment = sequelize.define('Payment', {
     payment_method_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

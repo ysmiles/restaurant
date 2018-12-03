@@ -63,14 +63,16 @@ router
       return
     }
 
-    let food = JSON.parse(ctx.body)
+    try {
+      //let food = JSON.parse(ctx.request.body)
+      console.log('received: ' + ctx.request.body)
 
-    Food
-      .create(food)
-      .then(res => console.log('created' + res))
-      .catch(err => console.log(err))
-
-    return
+      let newFood = await Food.create(ctx.request.body)
+      console.log('created: ' + newFood)
+      ctx.body = newFood
+    } catch (err) {
+      console.log(err)
+    }
   })
 
   .put('/foods', async (ctx, next) => {
@@ -110,9 +112,5 @@ router
   .all('/foods', async (ctx) => {
     ctx.throw(400, 'unrecognized action!')
   })
-
-// /?foodID=xxx
-// /?restaurantID=xxx
-// ?restaurantID=xxx&page=4&pre_page=10
 
 module.exports = router

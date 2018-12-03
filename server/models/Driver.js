@@ -1,6 +1,6 @@
-const sequelize = require('../dbs/sequelize')
+const Sequelize = require('../dbs/sequelize')
 
-const Driver = sequelize.define('Driver', {
+const Driver = Sequelize.define('Driver', {
     driver_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

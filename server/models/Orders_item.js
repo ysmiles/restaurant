@@ -1,9 +1,9 @@
-const sequelize = require('../dbs/sequelize')
+const Sequelize = require('../dbs/sequelize')
 const Orders = require('./Orders')
 const Food = require('./Food')
 
 // The data model corresponding to Customer in DB
-const Orders_item = sequelize.define('Orders_item', {
+const Orders_item = Sequelize.define('Orders_item', {
     orders_id: {
         type: Sequelize.STRING(13),
         allowNull: false,

@@ -1,6 +1,6 @@
 const foodsReducer = (state = [], action) => {
   switch (action.type) {
-    case 'LOAD':
+    case 'LOAD_FOODS':
       return action.payload;
 
     default:

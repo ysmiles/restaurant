@@ -5,7 +5,7 @@ function CheckoutForm(props) {
   const { handleSubmit } = props;
 
   return (
-    <div>
+    <div className="CheckoutUserForm">
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="order[name]">Your Name:</label>

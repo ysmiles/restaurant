@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 function Cart(props) {
   return (
     <div className="Cart">
-      <table>
+      <h3>My Cart</h3>
+      <table className="CartTable">
         <thead>
           <tr>
             <th>Item</th>
@@ -22,10 +23,18 @@ function Cart(props) {
               <td>
                 <button onClick={e => props.addToCart(item)}>+</button>
 
-                <button onClick={e => props.removeFromCart(item)}>-</button>
+                <button
+                  className="RemoveButton"
+                  onClick={e => props.removeFromCart(item)}
+                >
+                  -
+                </button>
               </td>
               <td>
-                <button onClick={e => props.removeAllFromCart(item)}>
+                <button
+                  className="RemoveAllButton"
+                  onClick={e => props.removeAllFromCart(item)}
+                >
                   Remove all
                 </button>
               </td>

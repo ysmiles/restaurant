@@ -11,7 +11,7 @@ body {
 }
 
 .Page-container {
-  width: 1000px;
+  width: 75%;
   margin: 10px auto;
   padding: 30px;
   background-color: white;
@@ -27,7 +27,12 @@ body {
 
 .Food-listing .Food-list-item {
   padding: 10px 30px;
-  width: 200px;
+  width: 32%;
+}
+
+.Food-list-item {
+  background-color: rgb(240, 240, 240);
+  border: 5px solid white;
 }
 
 ul.Top-menu {
@@ -47,4 +52,78 @@ ul.Top-menu li:before {
 
 ul.Top-menu li:nth-child(1):before {
   content: '';
+}
+
+/* input[type=text], input[type=password], select { */
+input,
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.Login {
+  padding: 60px 0;
+}
+
+.Login form {
+  margin: 0 auto;
+  max-width: 50%;
+}
+
+.Checkout form {
+  margin: 0 auto;
+  max-width: 50%;
+}
+
+.Register {
+  padding: 60px 0;
+}
+
+.Register form {
+  margin: 0 auto;
+  max-width: 50%;
+}
+
+button {
+  background-color: deepskyblue;
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.RemoveButton {
+  background-color: salmon;
+}
+
+.RemoveAllButton {
+  background-color: lightsalmon;
+}
+
+.Cart {
+  padding: 10px 30px;
+  margin: auto;
+  width: 80%;
+  /* border: 3px solid green; */
+  background-color: ivory;
+}
+
+table.CartTable {
+  table-layout: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.CheckoutUserForm {
+  padding: 50px 20px;
 }

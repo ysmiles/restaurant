@@ -14,7 +14,8 @@ const Router = () => (
     <Route exact path="/checkout" component={Checkout} />
     <Route exact path="/login" component={LoginModule.login} />
     <Route exact path="/register" component={LoginModule.register} />
-    <Route path="/orders/:id" component={Order} />
+    {/* <Route path="/orders/:id" component={Order} /> */}
+    <Route exact path="/orders" component={Order} />
   </Switch>
 );
 

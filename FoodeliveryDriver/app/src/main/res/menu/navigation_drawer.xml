@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/nav_my_profile"
+            android:title="@string/my_profile" />
+        <item
+            android:id="@+id/nav_my_current_task"
+            android:title="@string/my_current_task" />
+        <item
+            android:id="@+id/nav_pending_task_list"
+            android:title="@string/pending_task_list" />
+        <item
+            android:id="@+id/nav_my_task_history"
+            android:title="@string/my_task_history" />
+        <item
+            android:id="@+id/nav_log_out"
+            android:title="@string/log_out" />
+    </group>
+
+</menu>

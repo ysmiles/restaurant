@@ -13,7 +13,7 @@ const Food = sequelize.define('Restaurant', {
         // reference id to restauran model
         references: {
             model: Restaurant,
-            key: restaurant_id
+            key: 'restaurant_id'
         }
     },
     item_id: {

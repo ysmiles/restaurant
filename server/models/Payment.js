@@ -15,7 +15,7 @@ const Payment = sequelize.define('Payment', {
         unique: 'idAndNum',
         references: {
             model: User,
-            key: customer_id
+            key: 'customer_id'
         }
     },
     customer_number: {

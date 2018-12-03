@@ -16,14 +16,14 @@ const Orders = sequelize.define('Orders', {
         allowNull: false,
         references: {
             model: User,
-            key: customer_id
+            key: 'customer_id'
         }
     },
     driver_id: {
         type: Sequelize.INTEGER,
         references: {
             model: Driver,
-            key: driver_id
+            key: 'driver_id'
         }
     },
     payment_method_id: {
@@ -31,7 +31,7 @@ const Orders = sequelize.define('Orders', {
         allowNull: false,
         references: {
             model: Payment,
-            key: payment_method_id
+            key: 'payment_method_id'
         }
     },
     total_price: { type: Sequelize.DECIMAL(8, 2), allowNull: false },

@@ -1,0 +1,316 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_my_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MyProfileActivity"
+    tools:showIn="@layout/app_bar">
+
+    <TextView
+        android:id="@+id/my_profile_first_name_is"
+        android:layout_width="72dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/first_name_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/my_profile_first_name"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:text="Yi-Chin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_first_name_is"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/my_profile_last_name_is"
+        android:layout_width="72dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/last_name_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_first_name_is" />
+
+    <TextView
+        android:id="@+id/my_profile_last_name"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:text="Hsiao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_last_name_is"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_first_name" />
+
+    <TextView
+        android:id="@+id/my_profile_phone_number_is"
+        android:layout_width="98dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/phone_number_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_last_name_is" />
+
+    <TextView
+        android:id="@+id/my_profile_phone_number"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:text="6692627289"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_phone_number_is"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_last_name" />
+
+    <TextView
+        android:id="@+id/my_profile_email_is"
+        android:layout_width="38dp"
+        android:layout_height="19sp"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/email_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_phone_number_is" />
+
+    <TextView
+        android:id="@+id/my_profile_email"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:text="garyhsiao1219@gmail.com"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_email_is"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_phone_number" />
+
+    <TextView
+        android:id="@+id/my_profile_password_is"
+        android:layout_width="66dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/password_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_email_is" />
+
+    <TextView
+        android:id="@+id/my_profile_password"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:text="********"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_password_is"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_email" />
+
+    <Button
+        android:id="@+id/my_profile_btn_update_profile"
+        android:layout_width="136dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/update_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_password_is" />
+
+    <Button
+        android:id="@+id/my_profile_btn_update_password"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/update_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_btn_update_profile"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_password" />
+
+    <TextView
+        android:id="@+id/my_profile_car_registration"
+        android:layout_width="166dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/car_registration"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_btn_update_profile" />
+
+    <TextView
+        android:id="@+id/my_profile_license_plate_is"
+        android:layout_width="87dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/license_plate_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_car_registration" />
+
+    <TextView
+        android:id="@+id/my_profile_license_plate"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="6UGE989"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_license_plate_is"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_car_registration" />
+
+    <TextView
+        android:id="@+id/my_profile_year_is"
+        android:layout_width="32dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/year_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_license_plate_is" />
+
+    <TextView
+        android:id="@+id/my_profile_year"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="2012"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_year_is"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_license_plate" />
+
+    <TextView
+        android:id="@+id/my_profile_make_is"
+        android:layout_width="38dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/make_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_year_is" />
+
+    <TextView
+        android:id="@+id/my_profile_make"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="Nissan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_make_is"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_year" />
+
+    <TextView
+        android:id="@+id/my_profile_model_is"
+        android:layout_width="43dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/model_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_make_is" />
+
+    <TextView
+        android:id="@+id/my_profile_model"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="Juke"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_model_is"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_make" />
+
+    <TextView
+        android:id="@+id/my_profile_sub_model_is"
+        android:layout_width="67dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/sub_model_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_model_is" />
+
+    <TextView
+        android:id="@+id/my_profile_sub_model"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="SV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_sub_model_is"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_model" />
+
+    <TextView
+        android:id="@+id/my_profile_color_is"
+        android:layout_width="38dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/color_is"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_sub_model_is" />
+
+    <TextView
+        android:id="@+id/my_profile_color"
+        android:layout_width="220sp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="Gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/my_profile_color_is"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_sub_model" />
+
+    <Button
+        android:id="@+id/my_profile_btn_car_registration"
+        android:layout_width="217dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/update_car_registration"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_color"
+        app:layout_constraintVertical_bias="0.25" />
+</android.support.constraint.ConstraintLayout>

@@ -51,8 +51,8 @@ app.use(async (ctx, next) => {
 // app.use(users.routes(), users.allowedMethods())
 
 // routes
-const routes = require('./routes/index')
-app.use(routes())
+const router = require('./routes/index')
+app.use(router())
 
 // error-handling
 app.on('error', (err, ctx) => {

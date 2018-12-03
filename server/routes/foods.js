@@ -1,4 +1,6 @@
-const router = require('koa-router')()
+//const router = require('koa-router')()
+const Router = require('koa-router');
+const router = new Router();
 const Food = require('../models/Food')
 
 

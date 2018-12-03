@@ -1,6 +1,6 @@
-const sequelize = require('../dbs/sequelize')
+const Sequelize = require('../dbs/sequelize')
 
-const Restaurant = sequelize.define('Restaurant', {
+const Restaurant = Sequelize.define('Restaurant', {
     restaurant_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

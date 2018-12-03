@@ -27,7 +27,9 @@ class Login extends Component {
           <Input type="text" name="username" placeholder="username" />
           <Input type="password" name="password" placeholder="password" />
           <button>Sign In</button>
-          <Link to="/register">Register</Link>
+          <Link to="/register" style={{ float: 'right', padding: '15px' }}>
+            Register
+          </Link>
         </form>
       </div>
     );
@@ -53,7 +55,7 @@ class Input extends Component {
 
 const Logo = () => {
   return (
-    <div className="logo">
+    <div className="Logo">
       <span>This is the logo</span>
     </div>
   );

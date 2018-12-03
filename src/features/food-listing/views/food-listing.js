@@ -43,7 +43,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     loadFoods: foods => {
-      dispatch({ type: 'LOAD', payload: foods });
+      dispatch({ type: 'LOAD_FOODS', payload: foods });
     },
     addToCart: item => {
       dispatch({ type: 'ADD', payload: item });

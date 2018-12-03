@@ -1,7 +1,7 @@
 SET foreign_key_checks = 1;
-drop database if exists cmpe295;
-create database cmpe295;
-use cmpe295;
+drop database if exists foodelivery;
+create database foodelivery;
+use foodelivery;
 
 create table Customer(
 	customer_id int not null auto_increment,
@@ -66,7 +66,7 @@ create table Restaurant_business_hours(
 	workday int not null,
 	open_time time not null,
 	close_time time not null,
-	constraint unique(restaurant_id, workday),
+	primary key (restaurant_id, workday),
 	foreign key (restaurant_id) references Restaurant(restaurant_id)
 );
 	
@@ -86,10 +86,9 @@ create table Item(
 create table Orders(
 	orders_id varchar(13) not null,
 	customer_id int not null,
-	driver_id int not null,
+	driver_id int,
 	payment_method_id int not null,
-	delivery_fee decimal(7,2) not null,
-	tax decimal(7,2) not null,
+	total_price decimal(8,2) not null,
 	address varchar(200) not null,
 	order_time timestamp not null,
 	delivery_time timestamp,

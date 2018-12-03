@@ -1,4 +1,4 @@
-use cmpe295;
+use foodelivery;
 
 /* data in Customer */
 insert into Customer (first_name, last_name, phone_number, email, password, create_time) 
@@ -46,17 +46,17 @@ insert into Item (restaurant_id, name, prepare_time, unit_price)
 	values (1, 'Item3', 5, 6);
 
 /* data in Orders */
-insert into Orders (orders_id, customer_id, driver_id, payment_method_id, delivery_fee,
-	tax, address, order_time) 
-	values ('1234567890ABC', 1, 1, 1, 8, 3.65, '526 Railway Avenue, Campbell, CA 95008', 
+insert into Orders (orders_id, customer_id, driver_id, payment_method_id, total_price,
+	address, order_time) 
+	values ('1234567890ABC', 1, 1, 1, 13.00, '526 Railway Avenue, Campbell, CA 95008', 
 	now());
-insert into Orders (orders_id, customer_id, driver_id, payment_method_id, delivery_fee,
-	tax, address, order_time) 
-	values ('1234567890BCD', 1, 1, 1, 8, 3.65, '526 Railway Avenue, Campbell, CA 95008', 
+insert into Orders (orders_id, customer_id, driver_id, payment_method_id, total_price, 
+	address, order_time) 
+	values ('1234567890BCD', 1, 1, 1, 20.15, '526 Railway Avenue, Campbell, CA 95008', 
 	now());
-insert into Orders (orders_id, customer_id, driver_id, payment_method_id, delivery_fee,
-	tax, address, order_time) 
-	values ('1234567890CDE', 1, 1, 1, 8, 3.65, '526 Railway Avenue, Campbell, CA 95008', 
+insert into Orders (orders_id, customer_id, driver_id, payment_method_id, total_price, 
+	address, order_time)
+	values ('1234567890CDE', 1, 1, 1, 9.65, '526 Railway Avenue, Campbell, CA 95008', 
 	now());
 
 /* data in Orders_restaurant */

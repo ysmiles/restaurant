@@ -1,4 +1,5 @@
-const router = require('koa-router')()
+const Router = require('koa-router');
+const router = new Router();
 const User = require('../models/User')
 
 // To do: authetication for log in

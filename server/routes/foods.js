@@ -1,4 +1,6 @@
-const router = require('koa-router')()
+//const router = require('koa-router')()
+const Router = require('koa-router');
+const router = new Router();
 const Food = require('../models/Food')
 
 
@@ -7,7 +9,8 @@ const Food = require('../models/Food')
 
 // all get method 
 router
-  .get('/foods', async (ctx, next) => {
+  .get('/foods', async (ctx) => {
+    console.log('find foods...')
 
     let queryProps = { where: {} }
 
@@ -41,12 +44,11 @@ router
     }
 
 
-    Food
+    let res = await Food
       .findAll(queryProps)
-      .then(result => {
-        ctx.body = result
-      })
       .catch(err => console.log(err))
+
+    ctx.body = res
 
     return
   })
@@ -61,14 +63,16 @@ router
       return
     }
 
-    let food = JSON.parse(ctx.body)
+    try {
+      //let food = JSON.parse(ctx.request.body)
+      console.log('received: ' + ctx.request.body)
 
-    Food
-      .create(food)
-      .then(res => console.log('created' + res))
-      .catch(err => console.log(err))
-
-    return
+      let newFood = await Food.create(ctx.request.body)
+      console.log('created: ' + newFood)
+      ctx.body = newFood
+    } catch (err) {
+      console.log(err)
+    }
   })
 
   .put('/foods', async (ctx, next) => {
@@ -97,23 +101,16 @@ router
       return
     }
 
-    Food
-      .findById(ctx.query.foodID)
-      .then(found => {
-        return found.destroy({ force: true })
-      })
-      .then(() => console.log('Deleted: ' + ctx.query.foodID))
-      .catch(err => console.log(err))
-    
-      return
+    try {
+      let found = await Food.findById(ctx.query.foodId)
+      return found.destroy({ force: true })
+    } catch (err) {
+      console.log(err)
+    }
   })
 
   .all('/foods', async (ctx) => {
     ctx.throw(400, 'unrecognized action!')
   })
-
-// /?foodID=xxx
-// /?restaurantID=xxx
-// ?restaurantID=xxx&page=4&pre_page=10
 
 module.exports = router

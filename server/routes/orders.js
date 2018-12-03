@@ -2,6 +2,8 @@
 * router for orders
 */
 
-const router = require('koa-router')()
-const Food = require('../models/Order')
+const Router = require('koa-router');
+const router = new Router();
+const Order = require('../models/Orders')
 
+module.exports = router

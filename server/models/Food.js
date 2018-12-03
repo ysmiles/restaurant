@@ -1,7 +1,8 @@
-const Sequelize = require('../dbs/sequelize')
+const Sequelize = require('sequelize');
+const sequelize = require('../dbs/sequelize')
 const Restaurant = require('./Restaurant')
 
-const Food = Sequelize.define('Restaurant', {
+const Food = sequelize.define('Food', {
     restaurant_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -12,7 +13,7 @@ const Food = Sequelize.define('Restaurant', {
         // reference id to restauran model
         references: {
             model: Restaurant,
-            key: restaurant_id
+            key: 'restaurant_id'
         }
     },
     item_id: {

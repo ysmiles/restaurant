@@ -1,7 +1,8 @@
-const Sequelize = require('../dbs/sequelize')
+const Sequelize = require('sequelize');
+const sequelize = require('../dbs/sequelize')
 
 // The data model corresponding to Customer in DB
-const User = Sequelize.define('User', {
+const User = sequelize.define('User', {
     customer_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

@@ -1,10 +1,11 @@
-const Sequelize = require('../dbs/sequelize')
+const Sequelize = require('sequelize');
+const sequelize = require('../dbs/sequelize')
 const User = require('./User')
 const Driver = require('./Driver')
 const Payment = require('./Payment')
 
 // The data model corresponding to Customer in DB
-const Orders = Sequelize.define('Orders', {
+const Orders = sequelize.define('Orders', {
     orders_id: {
         type: Sequelize.STRING(13),
         allowNull: false,
@@ -15,14 +16,14 @@ const Orders = Sequelize.define('Orders', {
         allowNull: false,
         references: {
             model: User,
-            key: customer_id
+            key: 'customer_id'
         }
     },
     driver_id: {
         type: Sequelize.INTEGER,
         references: {
             model: Driver,
-            key: driver_id
+            key: 'driver_id'
         }
     },
     payment_method_id: {
@@ -30,7 +31,7 @@ const Orders = Sequelize.define('Orders', {
         allowNull: false,
         references: {
             model: Payment,
-            key: payment_method_id
+            key: 'payment_method_id'
         }
     },
     total_price: { type: Sequelize.DECIMAL(8, 2), allowNull: false },

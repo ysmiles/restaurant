@@ -32,4 +32,4 @@ server/package-lock.json
 
 # database & server config 
 server/dbs/config.js
-server/Gmaps/config.js
+server/gmaps/config.js

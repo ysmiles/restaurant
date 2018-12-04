@@ -1,7 +1,8 @@
-//const router = require('koa-router')()
 const Router = require('koa-router');
 const router = new Router();
 const Food = require('../models/Food')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op;
 
 
 // disable the prefix setting
@@ -31,7 +32,7 @@ router
 
     // The search mode and foodID query is incompatible and search mode has priority over foodID
     else if (ctx.query.foodId) {
-      queryProps.where.item_id = ctx.query.foodID
+      queryProps.where.item_id = ctx.query.foodId
     }
 
     if (ctx.query.page && ctx.query.per_page) {

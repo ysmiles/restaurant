@@ -31,8 +31,8 @@ router
     }
 
     // The search mode and foodID query is incompatible and search mode has priority over foodID
-    else if (ctx.query.foodId) {
-      queryProps.where.item_id = ctx.query.foodId
+    else if (ctx.query.item_id) {
+      queryProps.where.item_id = ctx.query.itemId
     }
 
     if (ctx.query.page && ctx.query.per_page) {
@@ -44,14 +44,16 @@ router
       queryProps.limit = perInt
     }
 
-
-    let res = await Food
-      .findAll(queryProps)
-      .catch(err => console.log(err))
-
-    ctx.body = res
-
-    return
+    try{
+      let res = await Food.findAll(queryProps)
+      ctx.body = res
+    } catch (err) {
+      console.log(err)
+      ctx.body = {
+        status: false,
+        description: err
+      }
+    }
   })
 
   // add food item to database, need authentication pre-process
@@ -59,7 +61,8 @@ router
     if (!ctx.request.body) {
       ctx.status = 400
       ctx.body = {
-        error: `no expected object received, the post data: ${ctx.request.body}`
+        status: false,
+        description: `no expected object received, the post data: ${ctx.request.body}`
       }
       return
     }
@@ -73,6 +76,10 @@ router
       ctx.body = newFood
     } catch (err) {
       console.log(err)
+      ctx.body = {
+        status: false,
+        description: err
+      }
     }
   })
 
@@ -80,33 +87,49 @@ router
     if (!ctx.request.body) {
       ctx.status = 400
       ctx.body = {
-        error: `no expected object received, the post data: ${ctx.request.body}`
+        status: false,
+        description: `no expected object received, the post data: ${ctx.request.body}`
       }
       return
     }
 
-    let food = JSON.parse(ctx.body)
+    try {
+      let found = await Food.findById(ctx.body.itemId)
 
-    Food
-      .findById(food.item_id)
-      .then(found => {
-        found.update(food).then(res => console.log(res))
-      })
-      .catch(err => console.log(err))
-    return
+      found = await found.update(ctx.body)
+
+      console.log(found)
+
+      ctx.body = `update success, the updated item: ${ctx.request.body}`
+    } catch (err) {
+      console.log(err)
+      ctx.body = {
+        status: false,
+        description: err
+      }
+    }
   })
 
   .del('/foods', async (ctx, next) => {
-    if (!ctx.query.foodID) {
-      console.log('deleting Item needs foodID')
+    if (!ctx.query.item_id) {
+      console.log('deleting Item needs itemId')
+      ctx.body = {
+        status: false,
+        description: 'no itemId received'
+      }
       return
     }
 
     try {
-      let found = await Food.findById(ctx.query.foodId)
-      return found.destroy({ force: true })
+      let found = await Food.findById(ctx.query.itemId)
+      let num = await found.destroy({ force: true })
+      ctx.body = `deleted ${num} item(s) successfully, the item id: ${ctx.query.itemId}`
     } catch (err) {
       console.log(err)
+      ctx.body = {
+        status: false,
+        description: err
+      }
     }
   })
 

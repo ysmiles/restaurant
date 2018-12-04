@@ -1,7 +1,8 @@
-const clientKey = require('./congfig').key
+const config = require('./config')
 
 const googleMapsClient = require('@google/maps').createClient({
-    key: clientKey
+    key: config.key,
+    Promise: Promise
 });
 
 module.exports = googleMapsClient

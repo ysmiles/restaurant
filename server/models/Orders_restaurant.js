@@ -3,7 +3,6 @@ const sequelize = require('../dbs/sequelize')
 const Orders = require('./Orders')
 const Restaurant = require('./Restaurant')
 
-// The data model corresponding to Customer in DB
 const Orders_restaurant = sequelize.define('Orders_restaurant', {
     orders_id: {
         type: Sequelize.STRING(13),

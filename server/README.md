@@ -43,10 +43,31 @@ get/post/put http methods are open.
 
 + `Post`/`Put` methods: The request body need to be JSON corresponding to Customer structure in database.
 
+### Static Resources:
+
+You can directly access all resources under public folder:
+
+For example to access the picture in public/image folder
+
+> http://hosturl/image/1-a.jpg
+
 ### Order
 
-To be completed
+To submit an order, use `post` method, it will return created order object
+
+> http://hosturl/order
+
+``` json
+{
+    "customer_id": 100,
+    "total_price": 130,
+    "address": "1600 Amphitheatre Parkway, Mountain View, CA",
+    "items": [{"item_id": 111, "quantity": 1, "subtotal": 0}]
+}
+```
 
 ### Map
 
-To be completed
+Get all planned routes:
+
+> http://hosturl/routes

@@ -10,6 +10,7 @@ const Orders = sequelize.define('Orders', {
         type: Sequelize.STRING(13),
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true
     },
     customer_id: {
         type: Sequelize.INTEGER,
@@ -28,7 +29,7 @@ const Orders = sequelize.define('Orders', {
     },
     payment_method_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        //allowNull: false,
         references: {
             model: Payment,
             key: 'payment_method_id'
@@ -36,7 +37,11 @@ const Orders = sequelize.define('Orders', {
     },
     total_price: { type: Sequelize.DECIMAL(8, 2), allowNull: false },
     address: { type: Sequelize.STRING(200), allowNull: false },
-    order_time: { type: 'TIMESTAMP', allowNull: false },
+    order_time: { 
+        type: 'TIMESTAMP', 
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false 
+    },
     delivery_time: { type: 'TIMESTAMP' },
 }, {
         // disable the default timestamp

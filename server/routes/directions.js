@@ -1,7 +1,7 @@
 const Router = require('koa-router');
 const router = new Router();
-const routePlanning = require('../Gmaps/route')
-const routes = require('../Gmaps/storage')
+const routePlanning = require('../gmaps/route')
+const routes = require('../gmaps/storage')
 
 router.get('/routes', async (ctx) => {
     console.log('getting routes')

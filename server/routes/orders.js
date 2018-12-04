@@ -11,7 +11,7 @@ const Sequelize = require('sequelize')
 const Food = require('../models/Food')
 const Op = Sequelize.Op;
 
-const routePlanning = require('../Gmaps/route')
+const routePlanning = require('../gmaps/route')
 
 router.get('/order', async (ctx) => {
     if (!ctx.query.orders_id && !ctx.query.customer_id) {

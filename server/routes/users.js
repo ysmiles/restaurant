@@ -9,13 +9,16 @@ const User = require('../models/User')
 // /user?customer_id=xxx
 router
 	.get('/user', async (ctx, next) => {
-		if (!ctx.query.customer_id) {
-      ctx.body = 'The query for user must has customer_id property!'
+		if (!ctx.query.customerId) {
+      ctx.body = {
+        status: false,
+        description:'The query for user must has customer_id property!'
+      } 
       return
     }
 
     try {
-      let user = await User.findById(ctx.query.customer_id)
+      let user = await User.findById(ctx.query.customerId)
       ctx.body = user
       console.log(user)
     } catch (err) {
@@ -30,7 +33,7 @@ router
 			ctx.throw(400, 'no expected post data received')
     }
 
-    if(ctx.request.body.customer_id) {
+    if(ctx.request.body.customerId) {
       ctx.throw(400, 'user ID is not allowed')
     }
 

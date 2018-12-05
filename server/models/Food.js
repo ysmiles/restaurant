@@ -30,7 +30,7 @@ const Food = sequelize.define('Food', {
      },
     // photo column may be not necessary
     photo: Sequelize.STRING(200),
-    prepare_time: { type: Sequelize.INTEGER, allowNull: false },
+    prepare_time: { type: Sequelize.INTEGER },
     unit_price: { type: Sequelize.DECIMAL(4, 2), allowNull: false },
     deleted: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
 }, {

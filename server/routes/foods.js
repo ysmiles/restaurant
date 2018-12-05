@@ -31,7 +31,7 @@ router
     }
 
     // The search mode and foodID query is incompatible and search mode has priority over foodID
-    else if (ctx.query.item_id) {
+    else if (ctx.query.itemId) {
       queryProps.where.item_id = ctx.query.itemId
     }
 
@@ -111,7 +111,7 @@ router
   })
 
   .del('/foods', async (ctx, next) => {
-    if (!ctx.query.item_id) {
+    if (!ctx.query.itemId) {
       console.log('deleting Item needs itemId')
       ctx.body = {
         status: false,

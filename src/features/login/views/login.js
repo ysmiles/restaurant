@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
 import { submitLogin } from '../actions';
 
@@ -15,6 +15,8 @@ class Login extends Component {
   onSubmit(ev) {
     ev.preventDefault();
     // do something
+    console.log('click submit');
+    this.props.testToggleLoginStatus(true);
   }
 
   refInput() {}
@@ -26,7 +28,7 @@ class Login extends Component {
         <form onSubmit={this.onSubmit}>
           <Input type="text" name="username" placeholder="username" />
           <Input type="password" name="password" placeholder="password" />
-          <button>Sign In</button>
+          <button type="submit">Sign In</button>
           <Link to="/register" style={{ float: 'right', padding: '15px' }}>
             Register
           </Link>
@@ -65,15 +67,30 @@ Login.propTypes = {
   // onLogin: PropTypes.func.isRequired
 };
 
+const mapStateToProps = null;
+// const mapStateToProps = state => {
+//   return {
+//     // loginStatus: state.loginStatus,
+//     loginStatus: true,
+//     // userinfo: state.userinfo,
+//     userinfo: {
+//       username: "Tom"
+//     }
+//   };
+// };
+
 const mapDispatchToProps = dispatch => {
   return {
     onLogin: userinfo => {
       dispatch(submitLogin(userinfo));
+    },
+    testToggleLoginStatus: statusWant => {
+      dispatch({ type: 'TEST_LOGIN', payload: statusWant });
     }
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Login);

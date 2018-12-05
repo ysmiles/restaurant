@@ -14,21 +14,21 @@ const Op = Sequelize.Op;
 const routePlanning = require('../gmaps/route')
 
 router.get('/order', async (ctx) => {
-    if (!ctx.query.orders_id && !ctx.query.customer_id) {
+    if (!ctx.query.orderId && !ctx.query.customerId) {
         ctx.body = {
             status: false,
-            description: 'Need orders_id or customer_id'
+            description: 'Need orderId or customerId'
         }
         return
     }
 
     // return single instance
-    if (ctx.query.orders_id) {
+    if (ctx.query.orderId) {
         try {
-            let queryOrder = await Orders.findById(ctx.query.orders_id)
+            let queryOrder = await Orders.findById(ctx.query.orderId)
             let queryItems = await Orders_item.findAll({
                 where: {
-                    orders_id: order.orders_id
+                    orders_id: ctx.query.orderId
                 }
             })
             ctx.body = {
@@ -46,11 +46,11 @@ router.get('/order', async (ctx) => {
     }
 
     // return an array of items, ordered by DESC order time
-    if (ctx.query.customer_id) {
+    if (ctx.query.customerId) {
         try {
             let orders = await Orders.findAll({
                 where: {
-                    customer_id: ctx.query.customer_id
+                    customer_id: ctx.query.customerId
                 },
                 order: 'order_time DESC'
             })

@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const sequelize = require('../dbs/sequelize')
 
 // The data model corresponding to Customer in DB

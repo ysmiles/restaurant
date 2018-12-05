@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const sequelize = require('../dbs/sequelize')
 
 const Driver = sequelize.define('Driver', {

@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const sequelize = require('../dbs/sequelize')
 const Restaurant = require('./Restaurant')
 
@@ -8,7 +9,7 @@ const Restaurant_business_hours = sequelize.define('Restaurant_business_hours', 
         primaryKey: true,
         references: {
             model: Restaurant,
-            key: restaurant_id
+            key: 'restaurant_id'
         }
     },
     workday: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true },

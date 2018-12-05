@@ -1,4 +1,5 @@
-const router = require('koa-router')()
+const Router = require('koa-router');
+const router = new Router();
 const User = require('../models/User')
 
 // To do: authetication for log in
@@ -8,14 +9,19 @@ const User = require('../models/User')
 // /user?customer_id=xxx
 router
 	.get('/user', async (ctx, next) => {
-		if (!ctx.query.customer_id) return
-		User
-			.findById(ctx.query.customer_id)
-			.then(found => {
-				ctx.body = found
-			})
-			.catch(err => console.log(err))
+		if (!ctx.query.customer_id) {
+      ctx.body = 'The query for user must has customer_id property!'
+      return
+    }
 
+    try {
+      let user = await User.findById(ctx.query.customer_id)
+      ctx.body = user
+      console.log(user)
+    } catch (err) {
+      console.log(err)
+      ctx.body = err
+    }
 		return
 	})
 
@@ -24,33 +30,17 @@ router
 			ctx.throw(400, 'no expected post data received')
     }
 
-    let user = JSON.parse(ctx.body)
-    if(user.customer_id) {
+    if(ctx.request.body.customer_id) {
       ctx.throw(400, 'user ID is not allowed')
     }
 
-		User
-			.create(user)
-			.then(res => console.log('created user:' + res))
-			.catch(err => console.log(err))
-
-		return
-  })
-  
-  .put('/user', async (ctx) => {
-    if (!ctx.request.body) {
-			ctx.throw(400, 'no expected post data received')
+    try {
+      let user = await User.create(ctx.request.body)
+      ctx.body = user
+      console.log(user)
+    } catch (err) {
+      console.log(err)
     }
-
-    let user = JSON.parse(ctx.body)
-
-		User
-			.findById(user.customer_id)
-			.then(res => {
-        res.update(user).then(res => console.log(res))
-      })
-			.catch(err => console.log(err))
-
 		return
   })
 
@@ -58,6 +48,25 @@ router
     ctx.throw(400, 'unrecognized action!')
   })
 
+router.post('/user/login', async (ctx) => {
+  if (!ctx.request.body) {
+    ctx.throw(400, 'no expected post data received')
+  }
 
+  let res = { status: false }
+
+  try {
+    let user = await User.findOne({ where: { email: ctx.request.body.email } })
+    // console.log(user)
+    if(user.password === ctx.request.body.password) {
+      res.status = true
+      res.id = user.customer_id
+    }
+  } catch (err) {
+    console.log(err)
+  } finally {
+    ctx.body = res
+  }
+})
 
 module.exports = router

@@ -1,6 +1,9 @@
-const router = require('koa-router')()
+const Router = require('koa-router');
+const router = new Router();
 const Restaurant = require('../models/Restaurant')
 const config = require('../config')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op;
 
 
 // disable the predix style, adjust to REST
@@ -9,47 +12,28 @@ const config = require('../config')
 router.get('/restaurant', async (ctx, next) => {
 	//ctx.body = 'this is a users/bar response'
 
+	let queryProps = { where: {} }
+
 	// /restaurant?restaurantId=xx
 	// redirected to specific restaurant food list
 	if (ctx.query.restaurantId) {
 		console.log('restaurantID: ' + ctx.query.restaurantId)
 		let rURL =  config.url + 'foods?restaurantId=' + ctx.query.restaurantId
 		this.redirect(rURL)
+		return
 	}
 
 	// /restaurant/?search=keyWord
 	// search for given keywork, no inside blank allowed
-	else if (ctx.query.search) {
+	if (ctx.query.search) {
 		let keyWords = '%' + ctx.query.search.trim() + '%'
 		console.log('search for all restaurant contains: ' + ctx.query.search)
 
-		Restaurant
-			.findAll({
-				where: {
-					name: {
-						[Op.like]: keyWords
-					}
-				}
-			})
-			.then(result => {
-				ctx.body = result
-			})
-			.catch(err => console.log(err))
-	}
-
-	// cautions: this may cause problems due to the large amount of rows
-	else if (!ctx.query.page || !ctx.query.per_page) {
-		console.log('query all restaurant')
-		Restaurant
-			.all()
-			.then(result => {
-				ctx.body = result;
-			})
-			.catch(err => console.log(err))
+		queryProps.where.name = { [Op.like]: keyWords }
 	}
 
 	// /restaurant/?page=2&per_page=20
-	else if (ctx.query.page && ctx.query.per_page) {
+	if (ctx.query.page && ctx.query.per_page) {
 		console.log('page num: ' + ctx.query.page)
 		console.log('item num: ' + ctx.query.per_page)
 
@@ -57,27 +41,20 @@ router.get('/restaurant', async (ctx, next) => {
 		let perInt = parseInt(ctx.query.per_page)
 		let offsetInt = (pageInt - 1) * perInt
 
-		// if the offset exceed the row number, an empty array will be returned
-		Restaurant
-			.findAll({
-				offset: offsetInt,
-				limit: perInt
-			})
-			.then(result => {
-				// return the rows directly, the return value will be arrays of JSON
-				ctx.body = result
-			})
-			.catch(err => console.log(err))
+		queryProps.offset = offsetInt
+      	queryProps.limit = perInt
 	}
 
-	else {
-		ctx.status = 404
+	try {
+		let res = Restaurant.findAll(queryProps)
+		ctx.body = res
+	} catch (err) {
+		console.log(err)
 		ctx.body = {
-			error: 'no resource found' + ctx.querystring
+			status: false,
+			description: err
 		}
 	}
-
-	return
 })
 
 // no post or delete allowed

@@ -1,5 +1,8 @@
-const router = require('koa-router')()
+const Router = require('koa-router');
+const router = new Router();
 const Food = require('../models/Food')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op;
 
 
 // disable the prefix setting
@@ -7,7 +10,8 @@ const Food = require('../models/Food')
 
 // all get method 
 router
-  .get('/foods', async (ctx, next) => {
+  .get('/foods', async (ctx) => {
+    console.log('find foods...')
 
     let queryProps = { where: {} }
 
@@ -27,8 +31,8 @@ router
     }
 
     // The search mode and foodID query is incompatible and search mode has priority over foodID
-    else if (ctx.query.foodId) {
-      queryProps.where.item_id = ctx.query.foodID
+    else if (ctx.query.item_id) {
+      queryProps.where.item_id = ctx.query.itemId
     }
 
     if (ctx.query.page && ctx.query.per_page) {
@@ -40,15 +44,16 @@ router
       queryProps.limit = perInt
     }
 
-
-    Food
-      .findAll(queryProps)
-      .then(result => {
-        ctx.body = result
-      })
-      .catch(err => console.log(err))
-
-    return
+    try{
+      let res = await Food.findAll(queryProps)
+      ctx.body = res
+    } catch (err) {
+      console.log(err)
+      ctx.body = {
+        status: false,
+        description: err
+      }
+    }
   })
 
   // add food item to database, need authentication pre-process
@@ -56,64 +61,80 @@ router
     if (!ctx.request.body) {
       ctx.status = 400
       ctx.body = {
-        error: `no expected object received, the post data: ${ctx.request.body}`
+        status: false,
+        description: `no expected object received, the post data: ${ctx.request.body}`
       }
       return
     }
 
-    let food = JSON.parse(ctx.body)
+    try {
+      //let food = JSON.parse(ctx.request.body)
+      console.log('received: ' + ctx.request.body)
 
-    Food
-      .create(food)
-      .then(res => console.log('created' + res))
-      .catch(err => console.log(err))
-
-    return
+      let newFood = await Food.create(ctx.request.body)
+      console.log('created: ' + newFood)
+      ctx.body = newFood
+    } catch (err) {
+      console.log(err)
+      ctx.body = {
+        status: false,
+        description: err
+      }
+    }
   })
 
   .put('/foods', async (ctx, next) => {
     if (!ctx.request.body) {
       ctx.status = 400
       ctx.body = {
-        error: `no expected object received, the post data: ${ctx.request.body}`
+        status: false,
+        description: `no expected object received, the post data: ${ctx.request.body}`
       }
       return
     }
 
-    let food = JSON.parse(ctx.body)
+    try {
+      let found = await Food.findById(ctx.body.itemId)
 
-    Food
-      .findById(food.item_id)
-      .then(found => {
-        found.update(food).then(res => console.log(res))
-      })
-      .catch(err => console.log(err))
-    return
+      found = await found.update(ctx.body)
+
+      console.log(found)
+
+      ctx.body = `update success, the updated item: ${ctx.request.body}`
+    } catch (err) {
+      console.log(err)
+      ctx.body = {
+        status: false,
+        description: err
+      }
+    }
   })
 
   .del('/foods', async (ctx, next) => {
-    if (!ctx.query.foodID) {
-      console.log('deleting Item needs foodID')
+    if (!ctx.query.item_id) {
+      console.log('deleting Item needs itemId')
+      ctx.body = {
+        status: false,
+        description: 'no itemId received'
+      }
       return
     }
 
-    Food
-      .findById(ctx.query.foodID)
-      .then(found => {
-        return found.destroy({ force: true })
-      })
-      .then(() => console.log('Deleted: ' + ctx.query.foodID))
-      .catch(err => console.log(err))
-    
-      return
+    try {
+      let found = await Food.findById(ctx.query.itemId)
+      let num = await found.destroy({ force: true })
+      ctx.body = `deleted ${num} item(s) successfully, the item id: ${ctx.query.itemId}`
+    } catch (err) {
+      console.log(err)
+      ctx.body = {
+        status: false,
+        description: err
+      }
+    }
   })
 
   .all('/foods', async (ctx) => {
     ctx.throw(400, 'unrecognized action!')
   })
-
-// /?foodID=xxx
-// /?restaurantID=xxx
-// ?restaurantID=xxx&page=4&pre_page=10
 
 module.exports = router

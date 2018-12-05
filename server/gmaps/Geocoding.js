@@ -10,13 +10,13 @@ const key = require('./config').key
 */
 
 function geocoding(rawAddr) {
-    let req =  'https://maps.googleapis.com/maps/api/geocode/json?'
+    let req = 'https://maps.googleapis.com/maps/api/geocode/json?'
 
     // if rawAddr is empty
     // error handle
 
     // add all parameters to request url
-    for(let p in rawAddr) {
+    for (let p in rawAddr) {
         req = req.concat(p).concat("=").concat(rawAddr[x]).concat("&")
     }
 
@@ -26,18 +26,18 @@ function geocoding(rawAddr) {
     // call the geocoding https API
     https.get(req, (res) => {
         var body = '';
-    
-        res.on('data', function(chunk){
+
+        res.on('data', function (chunk) {
             body += chunk;
         });
-    
-        res.on('end', function(){
+
+        res.on('end', function () {
             let geoRes = JSON.parse(body);
 
             // parse the json to return a reassembled json we need
 
         });
-    }).on('error', function(e){
-          console.log("The request to google geocoding gets an error: ", e);
+    }).on('error', function (e) {
+        console.log("The request to google geocoding gets an error: ", e);
     });
 }

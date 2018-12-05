@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
 import { submitLogin } from '../actions';
+import fetchApi from '../../../modules/fetch-api';
 
 class Login extends Component {
   constructor(props, context) {
@@ -12,11 +13,29 @@ class Login extends Component {
     this.refInput = this.refInput.bind(this);
   }
 
-  onSubmit(ev) {
-    ev.preventDefault();
-    // do something
-    console.log('click submit');
-    this.props.testToggleLoginStatus(true);
+  onSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    let userinfo = {};
+    formData.forEach((value, key) => {
+      userinfo[key] = value;
+    });
+
+    console.log(JSON.stringify(userinfo));
+
+    fetchApi('post', 'address', userinfo)
+      .then(json => {
+        if (json.errors) {
+          this.props.toggleLoginStatus(false);
+          throw 'log in failed';
+        }
+        this.props.toggleLoginStatus(true);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   refInput() {}
@@ -67,25 +86,19 @@ Login.propTypes = {
   // onLogin: PropTypes.func.isRequired
 };
 
-const mapStateToProps = null;
-// const mapStateToProps = state => {
-//   return {
-//     // loginStatus: state.loginStatus,
-//     loginStatus: true,
-//     // userinfo: state.userinfo,
-//     userinfo: {
-//       username: "Tom"
-//     }
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    loginStatus: state.loginStatus
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     onLogin: userinfo => {
       dispatch(submitLogin(userinfo));
     },
-    testToggleLoginStatus: statusWant => {
-      dispatch({ type: 'TEST_LOGIN', payload: statusWant });
+    toggleLoginStatus: statusWant => {
+      dispatch({ type: 'LOGIN_STATUS', payload: statusWant });
     }
   };
 };

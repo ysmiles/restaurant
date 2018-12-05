@@ -4,8 +4,7 @@ const initialstate = {
 };
 
 function reducer(state = initialstate, action) {
-  if (action && action.type === 'TEST_LOGIN') {
-    console.log('comehere');
+  if (action && action.type === 'LOGIN_STATUS') {
     return {
       loginStatus: action.payload,
       userinfo: {

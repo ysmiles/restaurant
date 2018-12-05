@@ -4,6 +4,7 @@ import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
 import { submitLogin } from '../actions';
 import fetchApi from '../../../modules/fetch-api';
+import LoginForm from './loginform';
 
 class Login extends Component {
   constructor(props, context) {
@@ -13,17 +14,8 @@ class Login extends Component {
     this.refInput = this.refInput.bind(this);
   }
 
-  onSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-
-    let userinfo = {};
-    formData.forEach((value, key) => {
-      userinfo[key] = value;
-    });
-
-    console.log(JSON.stringify(userinfo));
+  onSubmit(values) {
+    let userinfo = values;
 
     fetchApi('post', 'address', userinfo)
       .then(json => {
@@ -43,15 +35,7 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <Logo />
-        <form onSubmit={this.onSubmit}>
-          <Input type="text" name="username" placeholder="username" />
-          <Input type="password" name="password" placeholder="password" />
-          <button type="submit">Sign In</button>
-          <Link to="/register" style={{ float: 'right', padding: '15px' }}>
-            Register
-          </Link>
-        </form>
+        <LoginForm onSubmit={this.onSubmit} />
       </div>
     );
   }
@@ -73,14 +57,6 @@ class Input extends Component {
     );
   }
 }
-
-const Logo = () => {
-  return (
-    <div className="Logo">
-      <span>This is the logo</span>
-    </div>
-  );
-};
 
 Login.propTypes = {
   // onLogin: PropTypes.func.isRequired

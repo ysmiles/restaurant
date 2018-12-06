@@ -18,18 +18,22 @@ class FeatureName extends React.Component {
   refInput() {}
 
   render() {
+    let searchContent = '';
     return (
-      <div className="Searchbar">
+      <div className="Searchbar" style={{ padding: 30 }}>
         <SearchBar
-          onChange={() => console.log('onChange')}
-          onRequestSearch={() => console.log('onRequestSearch')}
+          onChange={value => {
+            // console.log("onChange: " + value);
+            searchContent = value;
+          }}
+          onRequestSearch={() =>
+            console.log('onRequestSearch: ' + searchContent)
+          }
           style={{
             margin: '0 auto',
             maxWidth: 800
           }}
         />
-        {/* <br />
-        <br /> */}
       </div>
     );
   }

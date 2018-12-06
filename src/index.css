@@ -27,12 +27,17 @@ body {
 
 .Food-listing .Food-list-item {
   padding: 10px 30px;
-  width: 32%;
+  width: 20%;
 }
 
 .Food-list-item {
   background-color: rgb(240, 240, 240);
   border: 5px solid white;
+}
+
+.Food-list-item img {
+  height: 40%;
+  width: 80%;
 }
 
 ul.Top-menu {
@@ -72,12 +77,12 @@ select {
 
 .Login form {
   margin: 0 auto;
-  max-width: 50%;
+  max-width: 30%;
 }
 
 .Checkout form {
   margin: 0 auto;
-  max-width: 50%;
+  max-width: 30%;
 }
 
 .Register {
@@ -86,7 +91,7 @@ select {
 
 .Register form {
   margin: 0 auto;
-  max-width: 50%;
+  max-width: 30%;
 }
 
 button {
@@ -127,3 +132,9 @@ table.CartTable {
 .CheckoutUserForm {
   padding: 50px 20px;
 }
+
+/* label {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+} */

@@ -6,6 +6,7 @@ import { reducer as foodsReducer } from './features/food-listing';
 import { reducer as formReducer } from 'redux-form';
 import { reducer as ordersReducer } from './features/order';
 import { reducer as userReducer } from './features/user';
+import { reducer as searchbarReducer } from './features/searchbar';
 
 // const win = window;
 
@@ -16,7 +17,8 @@ const reducer = combineReducers({
   foods: foodsReducer,
   form: formReducer,
   orders: ordersReducer,
-  user: userReducer
+  user: userReducer,
+  searchbar: searchbarReducer
 });
 
 const middlewares = [];

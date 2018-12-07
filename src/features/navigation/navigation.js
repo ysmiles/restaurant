@@ -12,9 +12,9 @@ const Navigation = props => {
   const { loginStatus, userinfo } = login;
 
   return (
-    <div className="Navigation">
-      <Sidebar />
-      <nav>
+    <div>
+      <nav className="Navigation">
+        <Sidebar />
         <ul className="Top-menu">
           <li>
             <NavLink to="/">Home</NavLink>

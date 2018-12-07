@@ -3,13 +3,17 @@ import { NavLink, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { view as User } from '../user';
+import { view as Sidebar } from '../sidebar';
+
+import './style.css';
 
 const Navigation = props => {
   const { cart, login } = props;
   const { loginStatus, userinfo } = login;
 
   return (
-    <div>
+    <div className="Navigation">
+      <Sidebar />
       <nav>
         <ul className="Top-menu">
           <li>

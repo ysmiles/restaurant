@@ -1,0 +1,23 @@
+.Navigation {
+  display: flex;
+}
+
+ul.Top-menu {
+  /* position: relative; */
+  /* position: absolute; */
+  /* right: 50px; */
+  /* top: 100px;  */
+}
+
+ul.Top-menu li {
+  display: inline-block;
+}
+
+ul.Top-menu li:before {
+  content: '|';
+  margin: 0 4px;
+}
+
+ul.Top-menu li:nth-child(1):before {
+  content: '';
+}

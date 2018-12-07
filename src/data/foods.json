@@ -14,5 +14,53 @@
     "keywords": ["abc", "cba", "qqq"],
     "image": "2-b.jpg",
     "price": 20.48
+  },
+  {
+    "id": 3,
+    "name": "THE burger1",
+    "description": "This is good",
+    "keywords": ["abc", "def", "xyz"],
+    "image": "1-a.jpg",
+    "price": 10.24
+  },
+  {
+    "id": 4,
+    "name": "SUPER hotdog",
+    "description": "This is also good",
+    "keywords": ["abc", "cba", "qqq"],
+    "image": "2-b.jpg",
+    "price": 20.48
+  },
+  {
+    "id": 5,
+    "name": "THE burger",
+    "description": "This is good",
+    "keywords": ["abc", "def", "xyz"],
+    "image": "1-a.jpg",
+    "price": 10.24
+  },
+  {
+    "id": 6,
+    "name": "SUPER hotdog",
+    "description": "This is also good",
+    "keywords": ["abc", "cba", "qqq"],
+    "image": "2-b.jpg",
+    "price": 20.48
+  },
+  {
+    "id": 7,
+    "name": "THE burger",
+    "description": "This is good",
+    "keywords": ["abc", "def", "xyz"],
+    "image": "1-a.jpg",
+    "price": 10.24
+  },
+  {
+    "id": 8,
+    "name": "SUPER hotdog",
+    "description": "This is also good",
+    "keywords": ["abc", "cba", "qqq"],
+    "image": "2-b.jpg",
+    "price": 20.48
   }
 ]

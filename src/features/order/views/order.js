@@ -41,7 +41,7 @@ class Order extends React.Component {
     // temporary just first order
     const { name, email, order_items } = this.props.orders[0];
 
-    console.log(this.props.orders[0]);
+    // console.log(this.props.orders[0]);
 
     return (
       <div>

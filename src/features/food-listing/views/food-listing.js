@@ -2,8 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import FoodListItem from './food-list-item';
+import { view as Search } from '../../searchbar';
 
 import fetchApi from '../../../modules/fetch-api';
+
+import './style.css';
+// Note: Food listing is homepage
 
 class FoodListing extends React.Component {
   componentDidMount() {
@@ -19,15 +23,18 @@ class FoodListing extends React.Component {
     const { addToCart, removeFromCart, foods, cart } = this.props;
 
     return (
-      <div className="Food-listing">
-        {foods.map(food => (
-          <FoodListItem
-            food={food}
-            addToCart={addToCart}
-            removeFromCart={removeFromCart}
-            cartItem={cart.filter(cartItem => cartItem.id === food.id)[0]}
-          />
-        ))}
+      <div className="Homepage">
+        <Search />
+        <div className="Food-listing">
+          {foods.map(food => (
+            <FoodListItem
+              food={food}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              cartItem={cart.filter(cartItem => cartItem.id === food.id)[0]}
+            />
+          ))}
+        </div>
       </div>
     );
   }

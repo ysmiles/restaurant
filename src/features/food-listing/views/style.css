@@ -1,0 +1,22 @@
+.Food-listing {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.Food-listing .Food-list-item {
+  padding: 10px 30px;
+  width: 300px;
+  height: 300px;
+}
+
+.Food-list-item {
+  background-color: rgb(245, 245, 245);
+  border: 5px solid white;
+}
+
+.Food-list-item img {
+  height: 40%;
+  width: 80%;
+}

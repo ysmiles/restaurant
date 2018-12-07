@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
 import { submitLogin } from '../actions';
+import fetchApi from '../../../modules/fetch-api';
+import LoginForm from './loginform';
 
 class Login extends Component {
   constructor(props, context) {
@@ -12,9 +14,20 @@ class Login extends Component {
     this.refInput = this.refInput.bind(this);
   }
 
-  onSubmit(ev) {
-    ev.preventDefault();
-    // do something
+  onSubmit(values) {
+    let userinfo = values;
+
+    fetchApi('post', 'address', userinfo)
+      .then(json => {
+        if (json.errors) {
+          this.props.toggleLoginStatus(false);
+          throw 'log in failed';
+        }
+        this.props.toggleLoginStatus(true);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   refInput() {}
@@ -22,15 +35,7 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <Logo />
-        <form onSubmit={this.onSubmit}>
-          <Input type="text" name="username" placeholder="username" />
-          <Input type="password" name="password" placeholder="password" />
-          <button>Sign In</button>
-          <Link to="/register" style={{ float: 'right', padding: '15px' }}>
-            Register
-          </Link>
-        </form>
+        <LoginForm onSubmit={this.onSubmit} />
       </div>
     );
   }
@@ -53,27 +58,28 @@ class Input extends Component {
   }
 }
 
-const Logo = () => {
-  return (
-    <div className="Logo">
-      <span>This is the logo</span>
-    </div>
-  );
-};
-
 Login.propTypes = {
   // onLogin: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => {
+  return {
+    loginStatus: state.loginStatus
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onLogin: userinfo => {
       dispatch(submitLogin(userinfo));
+    },
+    toggleLoginStatus: statusWant => {
+      dispatch({ type: 'LOGIN_STATUS', payload: statusWant });
     }
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Login);

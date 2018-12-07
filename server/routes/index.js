@@ -10,12 +10,12 @@ const directionRouter = require('./directions')
 
 
 const router = combineRouters(
-  rootRouter,
-  restaurantRouter,
-  userRouter,
-  foodRouter,
-  orderRouter,
-  directionRouter
+    rootRouter,
+    restaurantRouter,
+    userRouter,
+    foodRouter,
+    orderRouter,
+    directionRouter
 )
 
 module.exports = router

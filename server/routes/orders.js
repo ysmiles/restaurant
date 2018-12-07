@@ -11,7 +11,7 @@ const Sequelize = require('sequelize')
 const Food = require('../models/Food')
 const Op = Sequelize.Op;
 
-const routePlanning = require('../gmaps/route')
+const routePlanning = require('../gmaps/route').addRoute;
 
 router.get('/order', async (ctx) => {
     if (!ctx.query.orderId && !ctx.query.customerId) {
@@ -78,7 +78,7 @@ router.post('/order', async (ctx) => {
     try {
         let recv = ctx.request.body
         ctx.body = recv
-        
+
         let order = await Orders.create({
             orders_id: Math.random().toString().substr(13),
             customer_id: ctx.request.body.customer_id,
@@ -86,17 +86,17 @@ router.post('/order', async (ctx) => {
             address: ctx.request.body.address
         })
 
-        let createdItem = null
-        let items = ctx.request.body.items
+        let createdItem = null;
+        let items = ctx.request.body.items;
 
-        for(j = 0; items[j] != null; j++) {
-            console.log(items[j])
+        for (let j = 0; items[j] != null; j++) {
+            console.log(items[j]);
             createdItem = await Orders_item.create({
                 orders_id: order.orders_id,
                 item_id: items[j].item_id,
                 quantity: items[j].quantity,
                 subtotal: items[j].subtotal
-            })
+            });
         }
 
         let rest = await Food.findOne({
@@ -104,17 +104,17 @@ router.post('/order', async (ctx) => {
                 item_id: createdItem.item_id
             }
         })
-    
+
         let restaurant = await Restaurant.findOne({
             where: {
                 restaurant_id: rest.restaurant_id
             }
         })
 
-        routePlanning(restaurant.address, order.address)
+        routePlanning(restaurant.address, order.address, order.orders_id);
 
         ctx.body = order
-        
+
     } catch (err) {
         console.log(err)
         ctx.body = {
@@ -123,18 +123,6 @@ router.post('/order', async (ctx) => {
         }
     }
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router

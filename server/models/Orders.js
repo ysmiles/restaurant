@@ -35,26 +35,26 @@ const Orders = sequelize.define('Orders', {
             key: 'payment_method_id'
         }
     },
-    total_price: { type: Sequelize.DECIMAL(8, 2), allowNull: false },
-    address: { type: Sequelize.STRING(200), allowNull: false },
-    order_time: { 
-        type: 'TIMESTAMP', 
+    total_price: {type: Sequelize.DECIMAL(8, 2), allowNull: false},
+    address: {type: Sequelize.STRING(200), allowNull: false},
+    order_time: {
+        type: 'TIMESTAMP',
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-        allowNull: false 
+        allowNull: false
     },
-    delivery_time: { type: 'TIMESTAMP' },
+    delivery_time: {type: 'TIMESTAMP'},
 }, {
-        // disable the default timestamp
-        // don't add the timestamp attributes (updatedAt, createdAt)
-        timestamps: false,
+    // disable the default timestamp
+    // don't add the timestamp attributes (updatedAt, createdAt)
+    timestamps: false,
 
-        // disable the modification of table names; By default, sequelize will automatically
-        // transform all passed model names (first parameter of define) into plural.
-        // if you don't want that, set the following
-        freezeTableName: true,
+    // disable the modification of table names; By default, sequelize will automatically
+    // transform all passed model names (first parameter of define) into plural.
+    // if you don't want that, set the following
+    freezeTableName: true,
 
-        // define the table's name
-        tableName: 'Orders',
-    });
+    // define the table's name
+    tableName: 'Orders',
+});
 
 module.exports = Orders

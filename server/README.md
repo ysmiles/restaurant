@@ -171,6 +171,6 @@ To submit an order, use `post` method, it will return created order object
 
 ### Map
 
-Get all planned routes:
+Get all planned routes, return an array of routes:
 
 > http://hosturl/routes

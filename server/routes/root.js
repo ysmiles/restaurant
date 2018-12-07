@@ -3,9 +3,8 @@ const router = new Router();
 
 
 router.get('/about', function (ctx, next) {
-  ctx.body = 'The Restaurant Project'
+    ctx.body = 'The Restaurant Project'
 })
-
 
 
 module.exports = router

@@ -22,28 +22,28 @@ const Food = sequelize.define('Food', {
         primaryKey: true,
         autoIncrement: true
     },
-    name: { 
-        type: Sequelize.STRING(50), 
+    name: {
+        type: Sequelize.STRING(50),
         allowNull: false,
         // constraint unique with restaurant_id
         unique: 'restaurantAndName'
-     },
+    },
     // photo column may be not necessary
     photo: Sequelize.STRING(200),
-    prepare_time: { type: Sequelize.INTEGER },
-    unit_price: { type: Sequelize.DECIMAL(4, 2), allowNull: false },
-    deleted: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
+    prepare_time: {type: Sequelize.INTEGER},
+    unit_price: {type: Sequelize.DECIMAL(4, 2), allowNull: false},
+    deleted: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
 }, {
-        // don't add the timestamp attributes (updatedAt, createdAt)
-        timestamps: false,
+    // don't add the timestamp attributes (updatedAt, createdAt)
+    timestamps: false,
 
-        // disable the modification of table names; By default, sequelize will automatically
-        // transform all passed model names (first parameter of define) into plural.
-        // if you don't want that, set the following
-        freezeTableName: true,
+    // disable the modification of table names; By default, sequelize will automatically
+    // transform all passed model names (first parameter of define) into plural.
+    // if you don't want that, set the following
+    freezeTableName: true,
 
-        // define the table's name
-        tableName: 'Item',
-    });
+    // define the table's name
+    tableName: 'Item',
+});
 
 module.exports = Food

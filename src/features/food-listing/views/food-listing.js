@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import FoodListItem from './food-list-item';
 import { view as Search } from '../../searchbar';
+import { view as MapModule } from '../../map';
 
 import fetchApi from '../../../modules/fetch-api';
 
@@ -35,6 +36,7 @@ class FoodListing extends React.Component {
             />
           ))}
         </div>
+        <MapModule />
       </div>
     );
   }

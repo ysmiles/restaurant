@@ -21,7 +21,7 @@ router.get('/restaurant', async (ctx, next) => {
     if (ctx.query.restaurantId) {
         console.log('restaurantID: ' + ctx.query.restaurantId)
         let rURL = config.url + 'foods?restaurantId=' + ctx.query.restaurantId
-        this.redirect(rURL)
+        ctx.redirect(rURL)
         return
     }
 

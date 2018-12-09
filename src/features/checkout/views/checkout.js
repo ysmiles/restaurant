@@ -32,7 +32,7 @@ function Checkout(props) {
 
   return (
     <div className="Checkout">
-      {cart.length ? <Cart /> : ''}
+      <Cart />
 
       <CheckoutForm onSubmit={values => submitOrder(values, cart)} />
     </div>

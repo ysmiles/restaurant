@@ -72,11 +72,11 @@ class Navigation extends React.Component {
               {loginStatus ? userinfo.username : 'Login'}
             </Button>
 
-            <Button color="inherit" onClick={() => history.push('/orders')}>
+            {/* <Button color="inherit" onClick={() => history.push('/orders')}>
               Orders
-            </Button>
+            </Button> */}
 
-            <Button color="inherit" onClick={() => history.push('/cart')}>
+            <Button color="inherit" onClick={() => history.push('/checkout')}>
               <ShoppingCartIcon />(
               {cart.reduce((acc, item) => {
                 return acc + item.quantity;
@@ -84,9 +84,9 @@ class Navigation extends React.Component {
               )
             </Button>
 
-            <Button color="inherit" onClick={() => history.push('/checkout')}>
+            {/* <Button color="inherit" onClick={() => history.push('/checkout')}>
               Checkout
-            </Button>
+            </Button> */}
           </Toolbar>
         </AppBar>
 

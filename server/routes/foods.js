@@ -7,6 +7,7 @@ const Op = Sequelize.Op;
 
 // disable the prefix setting
 //router.prefix('/foods')
+router.prefix('/api/');
 
 // all get method 
 router

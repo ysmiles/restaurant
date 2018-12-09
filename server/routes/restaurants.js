@@ -9,6 +9,8 @@ const Op = Sequelize.Op;
 // disable the predix style, adjust to REST
 // router.prefix('/restaurants')
 
+router.prefix('/api/');
+
 router.get('/restaurant', async (ctx, next) => {
     //ctx.body = 'this is a users/bar response'
 

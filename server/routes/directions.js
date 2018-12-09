@@ -5,6 +5,8 @@ const router = new Router();
 const fetched = require('../gmaps/storage').fetched;
 const stored = require('../gmaps/storage').stored;
 
+router.prefix('/api/');
+
 router.get('/routes', async (ctx) => {
     console.log('getting routes')
     ctx.body = fetched.concat(stored).map(o => o.route);

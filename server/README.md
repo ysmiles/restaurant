@@ -1,5 +1,9 @@
 # API maunal
 
+## The "API" prefix is added
+
+> http://hosturl/api/query
+
 ## The Response Convention:
 
 + if error occurs, the server will return a json which contains a `status` property with `false` value and a `descrition` property with error detail.
@@ -19,19 +23,19 @@ Only `Get` method is allowed for Restaurant query.
 
 + If you use restaurantId directly, the server will redirect the request to the restaurant home page and display all foods (array of food Item JSON).
 
-> http://hosturl/restaurant?restaurantId=xxxx
+> http://hosturl/api/restaurant?restaurantId=xxxx
 
 + Or you can use search, the return value is array of JSON. The `search` and `restaurantId` cannot coexist for restaurant
 
-> http://hosturl/restaurant?search=keyWord
+> http://hosturl/api/restaurant?search=keyWord
 
 + If there is no search or ID properties, the server will return all exists restaurants.
 
-> http://hosturl/restaurant
+> http://hosturl/api/restaurant
 
 + You can also define the range:
 
-> http://hosturl/restaurant?page=2&per_page=10
+> http://hosturl/api/restaurant?page=2&per_page=10
 
 **Return Value:**
 
@@ -65,11 +69,11 @@ For `Get` food you can define several properties in query simultaneously:
 
 + The return value offset and range
 
-> http://hosturl/foods?restaurantId=xxx&search=keyWord&page=2&per_page=10
+> http://hosturl/api/foods?restaurantId=xxx&search=keyWord&page=2&per_page=10
 
 + if you want all food items in database:
 
-> http://hosturl/foods
+> http://hosturl/api/foods
 
 `post` `update` method:
 
@@ -93,7 +97,7 @@ get/post http methods are open.
 
 + For `Get`: need `customerId` property in query.
 
-> http://hosturl/user?customerId=xxx
+> http://hosturl/api/user?customerId=xxx
 
 + `Post` methods: The request body need to be JSON corresponding to Customer structure in database. The `post` method cannot send customerId to server
 
@@ -110,7 +114,7 @@ It should be a post method, and the request body should be:
 ```
 API:
 
-> http://hosturl/user/login
+> http://hosturl/api/user/login
 
 **Return Value**
 
@@ -137,9 +141,9 @@ For example to access the picture in public/image folder
 ### Order
 To query an order, you should at least submit the `orderId` or `customerId`
 
-> http://hosturl/order?orderId=xxx
+> http://hosturl/api/order?orderId=xxx
 
-> http://hosturl/order?customerId=xxx
+> http://hosturl/api/order?customerId=xxx
 
 + if search by orderId
 
@@ -158,7 +162,7 @@ To query an order, you should at least submit the `orderId` or `customerId`
 #### Submit Order
 To submit an order, use `post` method, it will return created order object
 
-> http://hosturl/order
+> http://hosturl/api/order
 
 ``` json
 {
@@ -173,4 +177,4 @@ To submit an order, use `post` method, it will return created order object
 
 Get all planned routes, return an array of routes:
 
-> http://hosturl/routes
+> http://hosturl/api/routes

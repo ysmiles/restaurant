@@ -4,6 +4,8 @@ const User = require('../models/User')
 
 // To do: authetication for log in
 
+router.prefix('/api/');
+
 
 // when log in the cache on client should store its own id
 // /user?customer_id=xxx

@@ -51,8 +51,9 @@ class Navigation extends React.Component {
               className={classes.menuButton}
               color="inherit"
               aria-label="Menu"
+              onClick={this.onClick}
             >
-              <MenuIcon onClick={this.onClick} />
+              <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               Welcome

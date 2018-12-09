@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// import PropTypes from "prop-types";
-// import { withStyles } from "@material-ui/core/styles";
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 // import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -14,6 +14,35 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+
+const styles = {
+  bigAvatar: {
+    margin: 10,
+    width: 80,
+    height: 80
+  }
+};
+
+function ImageAvatars(props) {
+  const { classes } = props;
+  return (
+    <Grid container justify="center" alignItems="center">
+      <Avatar
+        alt="Remy Sharp"
+        src="/image/avatar1.png"
+        className={classes.bigAvatar}
+      />
+    </Grid>
+  );
+}
+
+ImageAvatars.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+ImageAvatars = withStyles(styles)(ImageAvatars);
 
 class Sidebar extends React.Component {
   constructor(props, context) {
@@ -35,17 +64,16 @@ class Sidebar extends React.Component {
     const sideList = (
       // <div className={classes.list}>
       <div className="SideList">
+        <ImageAvatars />
         <List>
-          {['My orders', 'Account Details veryyyyyy long'].map(
-            (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            )
-          )}
+          {['My orders', 'Account Details'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
         </List>
         <Divider />
         <List>
@@ -63,13 +91,12 @@ class Sidebar extends React.Component {
 
     return (
       <div className="Sidebar">
-        <IconButton
+        {/* <IconButton
           color="inherit"
           aria-label="Open drawer"
-          onClick={() => this.toggleDrawer('left', true)}
-        >
+          onClick={() => this.toggleDrawer("left", true)}>
           <MenuIcon />
-        </IconButton>
+        </IconButton> */}
         {/* <Button onClick={() => this.toggleDrawer("left", true)}>
           Open Left
         </Button> */}
@@ -115,8 +142,10 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(Sidebar);
-// )(withStyles(styles)(Sidebar));
+  mapDispatchToProps,
+  null,
+  { withRef: true }
+  // )(Sidebar);
+)(withStyles(styles)(Sidebar));
 
 // export default withStyles(styles)(TemporaryDrawer);

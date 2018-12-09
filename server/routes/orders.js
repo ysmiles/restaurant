@@ -11,6 +11,8 @@ const Sequelize = require('sequelize')
 const Food = require('../models/Food')
 const Op = Sequelize.Op;
 
+router.prefix('/api/')
+
 const routePlanning = require('../gmaps/route').addRoute;
 
 router.get('/order', async (ctx) => {

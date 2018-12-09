@@ -10,6 +10,19 @@ import fetchApi from '../../../modules/fetch-api';
 import './style.css';
 // Note: Food listing is homepage
 
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+
+const styles = theme => ({
+  root: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2
+  }
+});
+
 class FoodListing extends React.Component {
   componentDidMount() {
     const { loadFoods } = this.props;
@@ -21,21 +34,32 @@ class FoodListing extends React.Component {
   }
 
   render() {
-    const { addToCart, removeFromCart, foods, cart } = this.props;
+    const { addToCart, removeFromCart, foods, cart, classes } = this.props;
 
     return (
       <div className="Homepage">
         <Search />
-        <div className="Food-listing">
-          {foods.map(food => (
-            <FoodListItem
-              food={food}
-              addToCart={addToCart}
-              removeFromCart={removeFromCart}
-              cartItem={cart.filter(cartItem => cartItem.id === food.id)[0]}
-            />
-          ))}
-        </div>
+        <Paper className={classes.root} elevation={1}>
+          <div className="Food-listing">
+            {/* <Typography variant="h5" component="h3">
+              This is a sheet of paper.
+            </Typography>
+            <Typography component="p">
+              Paper can be used to build surface or other elements for your
+              application.
+            </Typography> */}
+            {foods.map(food => (
+              <Typography>
+                <FoodListItem
+                  food={food}
+                  addToCart={addToCart}
+                  removeFromCart={removeFromCart}
+                  cartItem={cart.filter(cartItem => cartItem.id === food.id)[0]}
+                />
+              </Typography>
+            ))}
+          </div>
+        </Paper>
         <MapModule />
       </div>
     );
@@ -62,6 +86,12 @@ function mapDispatchToProps(dispatch) {
     }
   };
 }
+
+FoodListing.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+FoodListing = withStyles(styles)(FoodListing);
 
 export default connect(
   mapStateToProps,

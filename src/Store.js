@@ -34,4 +34,14 @@ const storeEnhancers = compose(
   window && window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-export default createStore(reducer, {}, storeEnhancers);
+const persistedState = localStorage.getItem('reduxState')
+  ? JSON.parse(localStorage.getItem('reduxState'))
+  : {};
+
+const store = createStore(reducer, persistedState, storeEnhancers);
+
+store.subscribe(() => {
+  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+});
+
+export default store;

@@ -3,10 +3,10 @@ function funReturnNewState(state, payload) {
   return [];
 }
 
-const templateReducer = function(state = [], action) {
+const templateReducer = function(state = { mapLoaded: false }, action) {
   switch (action.type) {
-    case 'TYPE_1': {
-      return funReturnNewState(state, action.payload);
+    case 'MAP/UPDATE': {
+      return action.payload;
     }
 
     case 'TYPE_2': {

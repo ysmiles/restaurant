@@ -39,7 +39,7 @@ router.post('/routes/query', async (ctx) => {
     
     for(let i = 0; fetched[i] != null; i++) {
         console.log(fetched[i].orderId)
-        if(id in fetched[i].orderId) {
+        if(fetch[i].orderId.indexOf(id) !== -1) {
             //ctx.body = fetched[i].route;
             ctx.body = translateRequest(fetched[i].direction);
             return;
@@ -48,7 +48,7 @@ router.post('/routes/query', async (ctx) => {
 
     for(let i = 0; stored[i] != null; i++) {
         console.log(stored[i].orderId)
-        if(id in stored[i].orderId) {
+        if(stored[i].orderId.indexOf(id) !== -1) {
             //ctx.body = stored[i].route;
             ctx.body = translateRequest(stored[i].direction);
             return;

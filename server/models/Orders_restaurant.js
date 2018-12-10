@@ -45,7 +45,7 @@ const Orders_restaurant = sequelize.define('Orders_restaurant', {
 });
 
 
-Orders_restaurant.belongsTo(Orders)
+
 
 
 module.exports = Orders_restaurant

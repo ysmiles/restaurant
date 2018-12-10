@@ -105,7 +105,7 @@ router
     	let restaurant = await Restaurant.findOne({where: {restaurant_id: orders_restaurant.restaurant_id}})
     	let customer = await User.findOne({where: {customer_id: orders.customer_id}})
     	
-    	let orders_items = await Orders.findAll({where: {orders_id: orders:id}})
+    	let orders_items = await Orders.findAll({where: {orders_id: orders_id}})
     	let items = []
     	let quantity = []
     	for(var i = 0; i < orders_items.length; i++) {

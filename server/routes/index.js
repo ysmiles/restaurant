@@ -7,7 +7,7 @@ const foodRouter = require('./foods')
 const orderRouter = require('./orders')
 const restaurantRouter = require('./restaurants')
 const directionRouter = require('./directions')
-
+const driverRouter = require('./drivers')
 
 const router = combineRouters(
     rootRouter,
@@ -15,7 +15,8 @@ const router = combineRouters(
     userRouter,
     foodRouter,
     orderRouter,
-    directionRouter
+    directionRouter,
+    driverRouter
 )
 
 

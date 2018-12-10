@@ -13,8 +13,8 @@ insert into Payment_method (customer_id, card_number, card_type, holder_name,
 /* data in Driver */
 insert into Driver (first_name, last_name, phone_number, license_plate, car_year, 
 	car_made, car_model, car_submodel, car_color, email, password, create_time) 
-	values ('DF1', 'DL1', '0987654321', 'SJSU666', '2012', 'Nissan', 'Juke', 'SV', 'Gray', 
-	'df1dl1@gmail.com', sha2('df1dl1', 256), now());
+	values ('Yi-Chin', 'Hsiao', '6692627289', '6UGE989', '2012', 'Nissan', 'Juke', 'SV', 'Gray', 
+	'garyhsiao1219@gmail.com', 'yichin0091', now());
 	
 /* data in Restaurant */
 insert into Restaurant (name, phone_number, address, email, password, create_time) 

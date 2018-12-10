@@ -12,7 +12,7 @@ router.get('/routes', async (ctx) => {
     ctx.body = fetched.concat(stored).map(o => o.route);
 })
 
-router.get('/route/query', async (ctx) => {
+router.get('/routes/query', async (ctx) => {
     let id = ctx.query.id;
     for(let i = 0; fetched[i] != null; i++) {
         if(id in fetched[i].orderId) {

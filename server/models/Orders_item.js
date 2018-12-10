@@ -40,7 +40,6 @@ const Orders_item = sequelize.define('Orders_item', {
 });
 
 
-Orders_item.belongsTo(Orders)
 
 
 module.exports = Orders_item

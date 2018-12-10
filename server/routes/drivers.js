@@ -17,7 +17,7 @@ router
 		let email = ctx.request.body.email
 		let password = ctx.request.body.password
         let driver = await Driver.findOne({where: {email: email, password: password}})
-        if(driver == null) {
+        if(driver.driver_id == null) {
         	ctx.body = "error"
         	console.log("wrong email address or password")
         }
@@ -29,20 +29,20 @@ router
         return
     })
     
-    // .post('/driver/signup', async (ctx) => {
-//     	let first_name = ctx.request.body.first_name
-//     	let last_name = ctx.request.body.last_name
-//     	let phone_number = ctx.request.body.phone_number
-// 		let email = ctx.request.body.email
-// 		let password = ctx.request.body.password
-// 		let license_plate = ctx.request.body.license_plate
-// 		let car_year = ctx.request.body.car_year
-// 		let car_made = ctx.request.body.car_made
-// 		let car_model = ctx.request.body.car_model
-// 		let car_submodel = ctx.request.body.car_submodel
-// 		let car_color = ctx.request.body.car_color
-//         
-//         return
-//     })
+    .post('/driver/signup', async (ctx) => {
+    	let first_name = ctx.request.body.first_name
+    	let last_name = ctx.request.body.last_name
+    	let phone_number = ctx.request.body.phone_number
+		let email = ctx.request.body.email
+		let password = ctx.request.body.password
+		let license_plate = ctx.request.body.license_plate
+		let car_year = ctx.request.body.car_year
+		let car_made = ctx.request.body.car_made
+		let car_model = ctx.request.body.car_model
+		let car_submodel = ctx.request.body.car_submodel
+		let car_color = ctx.request.body.car_color
+        
+        return
+    })
 
 module.exports = router

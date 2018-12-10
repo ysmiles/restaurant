@@ -32,6 +32,7 @@ router
         let existed = await Driver.findOne({where: {email: email}})
         if(existed.length > 0) {
         	ctx.body = "existed"
+        	console.log("existed")
         	return
         }
         
@@ -43,10 +44,12 @@ router
                        				car_color: car_color})
         if(driver.length == 0) {
         	ctx.body = "error"
+        	console.log("error")
         	return
         }
         
         ctx.body = driver.driver_id
+        console.log("Driver ID is " + driver.driver_id)
         return
     })
     
@@ -61,6 +64,7 @@ router
     				   phone_number: phone_number})
     				   
     	ctx.body = "updated"
+    	console.log("updated")
         return
     })
     
@@ -90,6 +94,7 @@ router
     				   car_submodel: car_submodel, car_color: car_color})
     				   
     	ctx.body = "updated"
+    	console.log("updated")
         return
     })
 

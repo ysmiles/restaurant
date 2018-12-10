@@ -75,7 +75,7 @@ router.get('/routes/fetchOne', async (ctx) => {
             dummyTask.direction.waypoints = "" + dummyTask.direction.origin;
         }
 
-        let s = new Set(dummyTask.description.waypoints.split('|'))
+        let s = new Set(dummyTask.direction.waypoints.split('|'))
 
         dummyTask.direction.waypoints = [...s].join('|')
 

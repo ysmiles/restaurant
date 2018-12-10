@@ -1,8 +1,8 @@
 const cartWithoutItem = (cart, item) =>
-  cart.filter(cartItem => cartItem.id !== item.id);
+  cart.filter(cartItem => cartItem.item_id !== item.item_id);
 
 const itemInCart = (cart, item) =>
-  cart.filter(cartItem => cartItem.id === item.id)[0];
+  cart.filter(cartItem => cartItem.item_id === item.item_id)[0];
 
 const addToCart = (cart, item) => {
   const cartItem = itemInCart(cart, item);
@@ -28,7 +28,7 @@ const removeAllFromCart = (cart, item) => {
   return [...cartWithoutItem(cart, item)];
 };
 
-const sort = items => items.sort((a, b) => a.id - b.id);
+const sort = items => items.sort((a, b) => a.item_id - b.item_id);
 
 const cartReducer = (state = [], action) => {
   switch (action.type) {

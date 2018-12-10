@@ -57,7 +57,9 @@ class FoodListing extends React.Component {
                       addToCart={addToCart}
                       removeFromCart={removeFromCart}
                       cartItem={
-                        cart.filter(cartItem => cartItem.id === food.id)[0]
+                        cart.filter(
+                          cartItem => cartItem.item_id === food.item_id
+                        )[0]
                       }
                     />
                   </Typography>

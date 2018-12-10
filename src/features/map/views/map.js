@@ -79,17 +79,19 @@ class FeatureName extends React.Component {
     let directions = routes;
     let directionsService = new maps.DirectionsService();
 
-    directions.forEach(element => {
-      let directionsDisplay = new maps.DirectionsRenderer();
-      directionsDisplay.setMap(map);
-      directionsService.route(element, function(response, status) {
-        if (status === 'OK') {
-          directionsDisplay.setDirections(response);
-        } else {
-          // window.alert("Directions request failed due to " + status);
-        }
+    if (directions) {
+      directions.forEach(element => {
+        let directionsDisplay = new maps.DirectionsRenderer();
+        directionsDisplay.setMap(map);
+        directionsService.route(element, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            // window.alert("Directions request failed due to " + status);
+          }
+        });
       });
-    });
+    }
   }
 
   render() {

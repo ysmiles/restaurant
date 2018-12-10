@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import FoodListItem from './food-list-item';
 import { view as Search } from '../../searchbar';
 import { view as MapModule } from '../../map';
+import Grid from '@material-ui/core/Grid';
 
 import fetchApi from '../../../modules/fetch-api';
 
@@ -19,7 +20,16 @@ const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
+    paddingBottom: theme.spacing.unit * 2,
+    flexGrow: 1
+  },
+  paper: {
+    height: 260,
+    width: 250,
+    padding: 10
+  },
+  control: {
+    padding: theme.spacing.unit * 2
   }
 });
 
@@ -35,12 +45,15 @@ class FoodListing extends React.Component {
 
   render() {
     const { addToCart, removeFromCart, foods, cart, classes } = this.props;
+    let spacing = 15;
 
     return (
       <div className="Homepage">
         <Search />
-        <Paper className={classes.root} elevation={1}>
-          <div className="Food-listing">
+        <Grid container className={classes.root} spacing={16}>
+          <Grid item xs={12}>
+            {/* <Paper className={classes.root} elevation={1}> */}
+            {/* <div className="Food-listing"> */}
             {/* <Typography variant="h5" component="h3">
               This is a sheet of paper.
             </Typography>
@@ -48,24 +61,36 @@ class FoodListing extends React.Component {
               Paper can be used to build surface or other elements for your
               application.
             </Typography> */}
-            {foods.error
-              ? ''
-              : foods.map(food => (
-                  <Typography>
-                    <FoodListItem
-                      food={food}
-                      addToCart={addToCart}
-                      removeFromCart={removeFromCart}
-                      cartItem={
-                        cart.filter(
-                          cartItem => cartItem.item_id === food.item_id
-                        )[0]
-                      }
-                    />
-                  </Typography>
-                ))}
-          </div>
-        </Paper>
+            <Grid
+              container
+              className={classes.demo}
+              justify="center"
+              spacing={Number(spacing)}
+            >
+              {foods.error
+                ? ''
+                : foods.map(food => (
+                    <Grid key={food.name} item>
+                      <Paper className={classes.paper}>
+                        <Typography>
+                          <FoodListItem
+                            food={food}
+                            addToCart={addToCart}
+                            removeFromCart={removeFromCart}
+                            cartItem={
+                              cart.filter(
+                                cartItem => cartItem.item_id === food.item_id
+                              )[0]
+                            }
+                          />
+                        </Typography>
+                      </Paper>
+                    </Grid>
+                  ))}
+              {/* </div> */}
+            </Grid>
+          </Grid>
+        </Grid>
         <MapModule />
       </div>
     );

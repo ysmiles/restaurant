@@ -98,8 +98,8 @@ router
         return
     })
     
-    .get('/driver/getOrderDetail', async (ctx) => {
-    	let orders_id = ctx.query.orders_id
+    .post('/driver/getOrderDetail', async (ctx) => {
+    	let orders_id = ctx.request.body.orders_id
     	let orders = await Orders.findOne({where: {orders_id: orders_id}})
     	let orders_restaurant = await Orders_restaurant.findOne({where: {orders_id: orders_id}})
     	let restaurant = await Restaurant.findOne({where: {restaurant_id: orders_restaurant.restaurant_id}})

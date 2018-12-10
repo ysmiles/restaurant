@@ -69,10 +69,10 @@ router
         }
 
         try {
-            //let food = JSON.parse(ctx.request.body)
-            console.log('received: ' + ctx.request.body)
+            let food = JSON.parse(ctx.request.body)
+            console.log('received: ' + food)
 
-            let newFood = await Food.create(ctx.request.body)
+            let newFood = await Food.create(food)
             console.log('created: ' + newFood)
             ctx.body = newFood
         } catch (err) {

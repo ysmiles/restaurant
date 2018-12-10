@@ -34,3 +34,5 @@ server/package-lock.json
 server/dbs/config.js
 server/gmaps/config.js
 server/.idea
+
+server/bin/www

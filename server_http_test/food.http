@@ -1,3 +1,8 @@
 ###
 
 GET http://35.236.103.93/foods HTTP/1.1
+
+
+###
+
+http://35.236.103.93/api/foods?search=pizza 

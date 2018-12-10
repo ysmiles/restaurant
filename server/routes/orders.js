@@ -78,7 +78,7 @@ router.post('/order', async (ctx) => {
     }
 
     try {
-        let recv = JSON.parse(ctx.request.body)
+        let recv = ctx.request.body
         console.log(recv);
         let order = await Orders.create({
             orders_id: Math.random().toString().substr(13),

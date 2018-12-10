@@ -78,18 +78,16 @@ router.post('/order', async (ctx) => {
     }
 
     try {
-        let recv = ctx.request.body
-        ctx.body = recv
-
+        let recv = JSON.parse(ctx.request.body)
+        console.log(recv);
         let order = await Orders.create({
             orders_id: Math.random().toString().substr(13),
-            customer_id: ctx.request.body.customer_id,
-            total_price: ctx.request.body.total_price,
-            address: ctx.request.body.address
+            customer_id: recv.customer_id,
+            total_price: recv.total_price,
+            address: recv.address
         })
-
         let createdItem = null;
-        let items = ctx.request.body.items;
+        let items = recv.items;
 
         for (let j = 0; items[j] != null; j++) {
             console.log(items[j]);

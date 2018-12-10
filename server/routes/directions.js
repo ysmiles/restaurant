@@ -9,7 +9,7 @@ router.prefix('/api/');
 
 router.get('/routes', async (ctx) => {
     console.log('getting routes')
-    ctx.body = JSON.stringify(fetched.concat(stored).map(o => o.route));
+    ctx.body = fetched.concat(stored).map(o => o.route);
 })
 
 router.get('/route/query', async (ctx) => {
@@ -52,6 +52,5 @@ router.get('/routes/restart', async(ctx) => {
     stored.push(...fetched);
     fetched.length = 0;
 });
-
 
 module.exports = router

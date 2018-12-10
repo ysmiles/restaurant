@@ -87,7 +87,8 @@ For `Get` food you can define several properties in query simultaneously:
     item_id: (only for put method)
     name:
     unit_price:
-    [photo:] [prepare_time:]  
+    description:
+    photo:
 }
 ```
 

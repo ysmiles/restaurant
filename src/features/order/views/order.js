@@ -12,7 +12,7 @@ class Order extends React.Component {
   }
 
   componentDidMount() {
-    const { loadOrders } = this.props;
+    const { loadOrders, user } = this.props;
 
     // loadOrders([
     //   {
@@ -34,8 +34,10 @@ class Order extends React.Component {
     // ]);
 
     // fetchApi("get", "/api/ordersFromApi").then(json => {
-    //   loadOrders(json);
-    // });
+    fetchApi('get', '/api/order?customerId=' + user.customer_id).then(json => {
+      console.log(json);
+      loadOrders(json);
+    });
   }
 
   renderOrder() {
@@ -77,7 +79,8 @@ class Order extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    orders: state.orders
+    orders: state.orders,
+    user: state.user
   };
 }
 

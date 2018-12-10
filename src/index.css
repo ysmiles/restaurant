@@ -10,8 +10,14 @@ body {
   background-color: rgb(203, 247, 255);
 }
 
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+
 .Page-container {
-  width: 75%;
+  width: 80%;
   margin: 10px auto;
   padding: 30px;
   background-color: white;

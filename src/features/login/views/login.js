@@ -41,22 +41,22 @@ class Login extends Component {
   }
 }
 
-class Input extends Component {
-  render() {
-    return (
-      <div className="Input">
-        <input
-          type={this.props.type}
-          name={this.props.name}
-          placeholder={this.props.placeholder}
-          required
-          autocomplete="false"
-        />
-        <label for={this.props.name} />
-      </div>
-    );
-  }
-}
+// class Input extends Component {
+//   render() {
+//     return (
+//       <div className="Input">
+//         <input
+//           type={this.props.type}
+//           name={this.props.name}
+//           placeholder={this.props.placeholder}
+//           required
+//           autocomplete="false"
+//         />
+//         <label for={this.props.name} />
+//       </div>
+//     );
+//   }
+// }
 
 Login.propTypes = {
   // onLogin: PropTypes.func.isRequired

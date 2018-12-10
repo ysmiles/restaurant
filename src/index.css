@@ -75,11 +75,11 @@ button {
 }
 
 .Cart {
-  padding: 10px 30px;
+  padding: 30px 30px;
   margin: auto;
-  width: 80%;
+  width: 90%;
   /* border: 3px solid green; */
-  background-color: ivory;
+  /* background-color: ivory; */
 }
 
 table.CartTable {

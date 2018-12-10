@@ -88,6 +88,7 @@ async function addRoute(ori, dest, id) {
 
 async function newRoute(ori, dest, id) {
 
+    console.log("making route:" + ori + dest + id)
     try {
         let direction = {
             origin: ori,

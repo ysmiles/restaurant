@@ -7,23 +7,47 @@ const stored = require('../gmaps/storage').stored;
 
 router.prefix('/api/');
 
+function translateRequest(direction) {
+    //console.log(direction)
+    res = {};
+    res.travelMode = 'DRIVING';
+    res.optimizeWaypoints = true;
+    res.waypoints = [];
+    res.origin = direction.origin;
+    res.destination = direction.destination;
+
+    if("waypoints" in direction) {
+        let ws = direction.waypoints.split("|");
+        for(let i = 0; ws[i] != null; i++) {
+            res.waypoints.push({
+                location: ws[i],
+                stopover: true
+              });
+        }
+    }
+
+    return res;
+}
+
 router.get('/routes', async (ctx) => {
     console.log('getting routes')
-    ctx.body = fetched.concat(stored).map(o => o.route);
+    ctx.body = fetched.concat(stored).map(o => translateRequest(o.direction));
 })
 
 router.get('/routes/query', async (ctx) => {
     let id = ctx.query.id;
     for(let i = 0; fetched[i] != null; i++) {
         if(id in fetched[i].orderId) {
-            ctx.body = fetched[i].route;
+            //ctx.body = fetched[i].route;
+            ctx.body = translateRequest(fetched[i].direction);
             return;
         }
     }
 
     for(let i = 0; stored[i] != null; i++) {
         if(id in stored[i].orderId) {
-            ctx.body = stored[i].route;
+            //ctx.body = stored[i].route;
+            ctx.body = translateRequest(fetched[i].direction);
             return;
         }
     }

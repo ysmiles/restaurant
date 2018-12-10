@@ -7,6 +7,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const serve = require('koa-static-server')
+var cors = require('koa2-cors');
 
 // ejs is fully compatible with html 
 //const ejs = require('ejs')
@@ -26,6 +27,7 @@ app.use(logger())
 
 // directly fetch the static resources: localhost:port/resources_name
 app.use(require('koa-static')(__dirname + '/public'))
+app.use(cors());
 // app.use(serve({rootDir: '../build/'}))
 
 /*

@@ -115,11 +115,11 @@ router
     	}
 		
 		ctx.body = {
-			customer_name: customer.first_name + " " + customer.last_name
-			customer_address: orders.address
-			restaurant_name: restaurant.name
-			restaurant_address: restaurant.address
-			items: items
+			customer_name: customer.first_name + " " + customer.last_name,
+			customer_address: orders.address,
+			restaurant_name: restaurant.name,
+			restaurant_address: restaurant.address,
+			items: items,
 			quantity: quantity
 		}
         return

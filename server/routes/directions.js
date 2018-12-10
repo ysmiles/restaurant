@@ -34,9 +34,11 @@ router.get('/routes', async (ctx) => {
     ctx.body = fetched.concat(stored).map(o => translateRequest(o.direction));
 })
 
-router.get('/routes/query', async (ctx) => {
-    let id = ctx.query.id;
+router.post('/routes/query', async (ctx) => {
+    let id = ctx.request.body.id;
+    
     for(let i = 0; fetched[i] != null; i++) {
+        console.log(fetched[i].orderId)
         if(id in fetched[i].orderId) {
             //ctx.body = fetched[i].route;
             ctx.body = translateRequest(fetched[i].direction);
@@ -45,9 +47,10 @@ router.get('/routes/query', async (ctx) => {
     }
 
     for(let i = 0; stored[i] != null; i++) {
+        console.log(stored[i].orderId)
         if(id in stored[i].orderId) {
             //ctx.body = stored[i].route;
-            ctx.body = translateRequest(fetched[i].direction);
+            ctx.body = translateRequest(stored[i].direction);
             return;
         }
     }
@@ -67,12 +70,12 @@ router.get('/routes/fetchOne', async (ctx) => {
         let dummyTask = JSON.parse(JSON.stringify(task));
 
         if("waypoints" in dummyTask.direction) {
-            dummyTask.direction.waypoints = dummyTask.direction.ori + "|" + dummyTask.direction.waypoints;
+            dummyTask.direction.waypoints = dummyTask.direction.origin + "|" + dummyTask.direction.waypoints;
         } else {
-            dummyTask.direction.waypoints = "" + dummyTask.direction.ori;
+            dummyTask.direction.waypoints = "" + dummyTask.direction.origin;
         }
 
-        dummyTask.direction.ori = "1 Washington Sq, San Jose, CA 95192";
+        dummyTask.direction.origin = "1 Washington Sq, San Jose, CA 95192";
 
         ctx.body = dummyTask;
     } else {

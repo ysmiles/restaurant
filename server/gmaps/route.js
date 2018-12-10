@@ -72,7 +72,7 @@ async function addRoute(ori, dest, id) {
             // meet requirement
             if(time <= threshold) {
                 stored[i].direction = d;
-                stored[i].route = routeResult.json.routes[0];
+                stored[i].route = routeResult.json;
                 stored[i].orderId.push(id);
                 return stored[i].route;
             }
@@ -101,16 +101,22 @@ async function newRoute(ori, dest, id) {
 
         let route = await googleMaps.directions(direction).asPromise();
 
+        
+
         // a new route, so only check legs[0]
         if(route.json.routes[0].legs[0].duration.value <= threshold) {
             o.orderId = orderId;
             o.direction = direction;
-            o.route = route.json.routes[0];
+            o.route = route.json;
+            console.log(o.route);
             stored.push(o);
             return o.route;
         } else {
             return undefined;
         }
+
+        
+       //console.log(route)
     } catch (err) {
         console.log(err);
         return undefined;

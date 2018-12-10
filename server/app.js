@@ -26,7 +26,7 @@ app.use(logger())
 
 // directly fetch the static resources: localhost:port/resources_name
 app.use(require('koa-static')(__dirname + '/public'))
-app.use(serve({rootDir: '../build/'}))
+// app.use(serve({rootDir: '../build/'}))
 
 /*
 app.use(views(__dirname + '/views', {

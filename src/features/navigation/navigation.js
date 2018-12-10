@@ -1,62 +1,109 @@
 import React from 'react';
-import { NavLink, Route, Redirect, withRouter } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { view as User } from '../user';
 import { view as Sidebar } from '../sidebar';
 
-import './style.css';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-const Navigation = props => {
-  const { cart, login } = props;
-  const { loginStatus, userinfo } = login;
+const styles = {
+  root: {
+    flexGrow: 1
+  },
+  grow: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
+  }
+};
 
-  return (
-    <div className="Navigation">
-      <Sidebar />
-      <nav>
-        <ul className="Top-menu">
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/cart">
-              Cart (
+class Navigation extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  onClick = () => {
+    this.props.toggleSidebar({
+      ['left']: true
+    });
+  };
+
+  render() {
+    const { cart, login, classes, history } = this.props;
+    const { loginStatus, userinfo } = login;
+
+    return (
+      <div className={classes.root}>
+        <AppBar position="static" color="default">
+          <Toolbar>
+            <IconButton
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+              onClick={this.onClick}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+              Welcome
+            </Typography>
+
+            <Button color="inherit" onClick={() => history.push('/')}>
+              Home
+            </Button>
+
+            <Button
+              color="inherit"
+              onClick={() =>
+                history.push('/' + (loginStatus ? userinfo.username : 'login'))
+              }
+            >
+              {loginStatus ? userinfo.username : 'Login'}
+            </Button>
+
+            {/* <Button color="inherit" onClick={() => history.push('/orders')}>
+              Orders
+            </Button> */}
+
+            <Button color="inherit" onClick={() => history.push('/checkout')}>
+              <ShoppingCartIcon />(
               {cart.reduce((acc, item) => {
                 return acc + item.quantity;
               }, 0)}
               )
-            </NavLink>
-          </li>
-          <li>
-            {loginStatus ? (
-              <NavLink to={'/' + userinfo.username}>
-                {userinfo.username}
-              </NavLink>
-            ) : (
-              <NavLink to="/login">Login</NavLink>
-            )}
-          </li>
-          <li>
-            <NavLink to="/checkout">Checkout</NavLink>
-          </li>
-          <li>
-            <NavLink to="/orders">Orders</NavLink>
-          </li>
-        </ul>
-      </nav>
+            </Button>
 
-      {loginStatus ? (
-        <div>
-          <Route exact path={'/' + userinfo.username} component={User} />
-          <Redirect from="/login" to={'/' + userinfo.username} />
-        </div>
-      ) : (
-        ''
-      )}
-    </div>
-  );
-};
+            {/* <Button color="inherit" onClick={() => history.push('/checkout')}>
+              Checkout
+            </Button> */}
+          </Toolbar>
+        </AppBar>
+
+        <Sidebar />
+
+        {loginStatus ? (
+          <div>
+            {/* <Redirect from="/login" to={('/' + userinfo.username)} /> */}
+            <Route exact path={'/' + userinfo.username} component={User} />
+          </div>
+        ) : (
+          ''
+        )}
+      </div>
+    );
+  }
+}
 
 function mapStateToProps(state) {
   return {
@@ -65,4 +112,23 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps)(Navigation));
+function mapDispatchToProps(dispatch) {
+  return {
+    toggleSidebar: item => {
+      dispatch({ type: 'SIDEBAR/TOGGLE', payload: item });
+    }
+  };
+}
+
+Navigation.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+Navigation = withStyles(styles)(Navigation);
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Navigation)
+);

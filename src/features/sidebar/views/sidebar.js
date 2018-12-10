@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-// import PropTypes from "prop-types";
-// import { withStyles } from "@material-ui/core/styles";
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -14,6 +15,35 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+
+const styles = {
+  bigAvatar: {
+    margin: 10,
+    width: 80,
+    height: 80
+  }
+};
+
+function ImageAvatars(props) {
+  const { classes } = props;
+  return (
+    <Grid container justify="center" alignItems="center">
+      <Avatar
+        alt="Remy Sharp"
+        src="/image/avatar1.png"
+        className={classes.bigAvatar}
+      />
+    </Grid>
+  );
+}
+
+ImageAvatars.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+ImageAvatars = withStyles(styles)(ImageAvatars);
 
 class Sidebar extends React.Component {
   constructor(props, context) {
@@ -30,46 +60,92 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const { left } = this.props;
+    const { left, toggleLoginStatus, history, loginInfo } = this.props;
 
     const sideList = (
       // <div className={classes.list}>
       <div className="SideList">
+        <ImageAvatars />
         <List>
-          {['My orders', 'Account Details veryyyyyy long'].map(
-            (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            )
-          )}
-        </List>
-        <Divider />
-        <List>
-          {['Log out'].map((text, index) => (
+          {/* {["My orders", "Account Details"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
+          ))} */}
+          <ListItem
+            button
+            key="My Orders"
+            onClick={() => {
+              history.push(
+                '/' +
+                  (loginInfo.loginStatus
+                    ? loginInfo.userinfo.username
+                    : 'login')
+              );
+            }}
+          >
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="My Orders" />
+          </ListItem>
+
+          <ListItem
+            button
+            key="Account Details"
+            onClick={() => {
+              history.push(
+                '/' +
+                  (loginInfo.loginStatus
+                    ? loginInfo.userinfo.username + '/details'
+                    : 'login')
+              );
+            }}
+          >
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary="Account Details" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          {/* {["Log out"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))} */}
+          <ListItem
+            button
+            key="Log out"
+            onClick={() => {
+              toggleLoginStatus(false);
+              history.push('/');
+            }}
+          >
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Log out" />
+          </ListItem>
         </List>
       </div>
     );
 
     return (
       <div className="Sidebar">
-        <IconButton
+        {/* <IconButton
           color="inherit"
           aria-label="Open drawer"
-          onClick={() => this.toggleDrawer('left', true)}
-        >
+          onClick={() => this.toggleDrawer("left", true)}>
           <MenuIcon />
-        </IconButton>
+        </IconButton> */}
         {/* <Button onClick={() => this.toggleDrawer("left", true)}>
           Open Left
         </Button> */}
@@ -97,6 +173,10 @@ function mapStateToProps(state) {
   //     right: false,
   //   };
   let props = Object.assign({}, state.sidebar);
+  props = {
+    loginInfo: state.login,
+    ...props
+  };
   return props;
 }
 
@@ -104,6 +184,9 @@ function mapDispatchToProps(dispatch) {
   return {
     toggleSidebar: item => {
       dispatch({ type: 'SIDEBAR/TOGGLE', payload: item });
+    },
+    toggleLoginStatus: statusWant => {
+      dispatch({ type: 'LOGIN_STATUS', payload: statusWant });
     }
   };
 }
@@ -113,10 +196,14 @@ function mapDispatchToProps(dispatch) {
 //   // title: propTypes.string.isRequired
 // };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Sidebar);
-// )(withStyles(styles)(Sidebar));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    null,
+    { withRef: true }
+    // )(Sidebar);
+  )(withStyles(styles)(Sidebar))
+);
 
 // export default withStyles(styles)(TemporaryDrawer);

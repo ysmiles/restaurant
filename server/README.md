@@ -75,6 +75,20 @@ For `Get` food you can define several properties in query simultaneously:
 
 > http://hosturl/api/foods
 
+return value: Array of JSON:
+```json
+{
+    restaurant_id: 
+    item_id: 
+    name: 
+    photo: 
+    prepare_time: 
+    unit_price: 
+    deleted: 
+    description: 
+}
+```
+
 `post` `update` method:
 
 **Return value:** A json object corresponding to the item

@@ -11,7 +11,7 @@ router
 		try {
 			let email = ctx.request.body.email
 			let password = ctx.request.body.password
-            let driver = await Driver.findOne({where: {{email: email}, {password: password}}})
+            let driver = await Driver.findOne({where: {email: email, password: password}})
             ctx.body = driver
             console.log(driver)
         } catch (err) {

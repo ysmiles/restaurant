@@ -11,14 +11,8 @@ router
 		let email = ctx.request.body.email
 		let password = ctx.request.body.password
         let driver = await Driver.findOne({where: {email: email, password: password}})
-        if(driver.driver_id == null) {
-        	ctx.body = "error"
-        	console.log("wrong email address or password")
-        }
-        else {
-            ctx.body = driver
-            console.log(driver)
-        }
+        ctx.body = driver
+        console.log(driver)
         return
     })
     

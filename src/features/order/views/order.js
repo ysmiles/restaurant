@@ -56,7 +56,7 @@ class Order extends React.Component {
 
     // fetchApi("get", "/api/ordersFromApi").then(json => {
     fetchApi('get', '/api/order?customerId=' + user.customer_id).then(json => {
-      console.log(JSON.stringify(json));
+      // console.log(JSON.stringify(json));
       loadOrders(json);
     });
   }

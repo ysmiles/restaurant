@@ -2,7 +2,6 @@ const Router = require('koa-router');
 const router = new Router();
 const Driver = require('../models/Driver')
 const Orders = require('../models/Orders')
-const Orders_restaurant = require('../models/Orders_restaurant')
 const Restaurant = require('../models/Restaurant')
 const User = require('../models/User')
 const Orders_item = require('../models/Orders_item')
@@ -107,15 +106,18 @@ router
     .post('/driver/getOrderDetail', async (ctx) => {
     	let orders_id = ctx.request.body.orders_id
     	let orders = await Orders.findOne({where: {orders_id: orders_id}})
-    	let orders_restaurant = await Orders_restaurant.findOne({where: {orders_id: orders_id}})
-    	let restaurant = await Restaurant.findOne({where: {restaurant_id: orders_restaurant.restaurant_id}})
     	let customer = await User.findOne({where: {customer_id: orders.customer_id}})
     	
     	let orders_items = await Orders_item.findAll({where: {orders_id: orders_id}})
+    	let restaurant_name = ""
+    	let restaurant_address = ""
     	let items = []
     	let quantity = []
     	for(var i = 0; i < orders_items.length; i++) {
     		let food = await Food.findOne({where: {item_id: order_items[i].item_id}})
+    		let restaurant = await Restaurant.findOne({where: {restaurant_id: food.restaurant_id}})
+    		restaurant_name = restaurant.name
+    		restaurant_address = restaurant.address
     		items.push(food.name)
     		quantity.push(order_items[i].quantity)
     	}
@@ -123,8 +125,8 @@ router
 		ctx.body = {
 			customer_name: customer.first_name + " " + customer.last_name,
 			customer_address: orders.address,
-			restaurant_name: restaurant.name,
-			restaurant_address: restaurant.address,
+			restaurant_name: restaurant_name,
+			restaurant_address: restaurant_address,
 			items: items,
 			quantity: quantity
 		}

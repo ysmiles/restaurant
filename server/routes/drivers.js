@@ -1,6 +1,12 @@
 const Router = require('koa-router');
 const router = new Router();
 const Driver = require('../models/Driver')
+const Orders = require('../models/Orders')
+const Orders_restaurant = require('../models/Orders_restaurant')
+const Restaurant = require('../models/Restaurant')
+const User = require('../models/User')
+const Orders_item = require('../models/Orders_item')
+const Food = require('../models/Food')
 
 // To do: authetication for log in
 
@@ -105,7 +111,7 @@ router
     	let restaurant = await Restaurant.findOne({where: {restaurant_id: orders_restaurant.restaurant_id}})
     	let customer = await User.findOne({where: {customer_id: orders.customer_id}})
     	
-    	let orders_items = await Orders.findAll({where: {orders_id: orders_id}})
+    	let orders_items = await Orders_item.findAll({where: {orders_id: orders_id}})
     	let items = []
     	let quantity = []
     	for(var i = 0; i < orders_items.length; i++) {

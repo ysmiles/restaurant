@@ -14,16 +14,17 @@ class Register extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    console.log(JSON.stringify(values));
     let registerinfo = values;
+    const { changeLoginStatus, updateUser } = this.props;
 
-    fetchApi('post', 'address', registerinfo)
+    fetchApi('post', '/api/user', registerinfo)
       .then(json => {
-        if (json.errors) {
-          this.props.toggleLoginStatus(false);
-          throw 'register failed';
+        console.log(JSON.stringify(json));
+        if (json.customer_id > 0) {
+          changeLoginStatus({ status: true, id: json.customer_id });
+          updateUser(json);
         }
-        this.props.toggleLoginStatus(true);
       })
       .catch(error => {
         console.log(error);
@@ -33,8 +34,11 @@ class Register extends Component {
   refInput() {}
 
   render() {
+    const { history, login, user } = this.props;
+
     return (
       <div className="Register">
+        {user.customer_id ? history.push('/' + user.first_name) : ''}
         <RegisterForm onSubmit={this.onSubmit} />
       </div>
     );
@@ -45,15 +49,23 @@ Register.propTypes = {
   //   onRegister: PropTypes.func.isRequired
 };
 
+const mapStateToProps = state => ({
+  user: state.user,
+  login: state.login
+});
+
 const mapDispatchToProps = dispatch => {
   return {
-    onRegister: userinfo => {
-      dispatch(registerLogin(userinfo));
+    changeLoginStatus: newStatus => {
+      dispatch({ type: 'LOGIN_STATUS', payload: newStatus });
+    },
+    updateUser: userDetails => {
+      dispatch({ type: 'USER/UPDATE', payload: userDetails });
     }
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Register);

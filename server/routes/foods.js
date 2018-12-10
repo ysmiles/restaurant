@@ -70,7 +70,7 @@ router
 
         try {
             let food = ctx.request.body
-            food.photo = "" + food.restaurant_id + food.name
+            food.photo = "" + food.restaurant_id + food.name +".jpg"
             console.log('received: ' + food)
 
             let newFood = await Food.create(food)

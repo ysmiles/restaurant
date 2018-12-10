@@ -28,7 +28,11 @@ const styles = {
 };
 
 function Cart(props) {
-  const { classes } = props;
+  const { classes, cart } = props;
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.unit_price * item.quantity,
+    0
+  );
 
   return (
     <div className="Cart">
@@ -54,7 +58,7 @@ function Cart(props) {
             </thead>
 
             <tbody>
-              {props.cart.map(item => (
+              {cart.map(item => (
                 <tr>
                   <td>{item.name}</td>
                   <td>{item.quantity}</td>
@@ -76,10 +80,18 @@ function Cart(props) {
                       Remove all
                     </button>
                   </td>
+                  <td>{'$ ' + item.unit_price * item.quantity}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            Total Price: {totalPrice.toFixed(2)}
+          </Typography>
         </CardContent>
       </Card>
     </div>

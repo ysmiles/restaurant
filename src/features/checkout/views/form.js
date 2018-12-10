@@ -8,16 +8,18 @@ function CheckoutForm(props) {
     <div className="CheckoutUserForm">
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="order[name]">Your Name:</label>
+          <label htmlFor="order[name]">Your Address:</label>
           <br />
-          <Field name="order[name]" component="input" type="text" />
+          (if different from your default address)
+          <br />
+          <Field name="address" component="input" type="text" />
         </div>
 
-        <div>
+        {/* <div>
           <label htmlFor="order[email]">Your Email:</label>
           <br />
           <Field email="order[email]" component="input" type="email" />
-        </div>
+        </div> */}
 
         <div>
           <button type="submit">Submit order</button>

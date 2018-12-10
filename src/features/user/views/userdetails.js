@@ -4,34 +4,14 @@ import { connect } from 'react-redux';
 import { view as Order } from '../../order';
 import fetchApi from '../../../modules/fetch-api';
 
-class User extends React.Component {
+class Userdetails extends React.Component {
   constructor(props, context) {
     super(props, context);
-
-    this.onSubmit = this.onSubmit.bind(this);
   }
-
-  componentDidMount() {
-    // const { login, updateUser } = this.props;
-    // if (login.loginStatus) {
-    // }
-  }
-
-  onSubmit(event) {
-    // event.preventDefault();
-    // do something
-  }
-
-  refInput() {}
 
   render() {
-    return (
-      <div className="User">
-        <h3>This is the title</h3>
-        This is the content
-        <Order />
-      </div>
-    );
+    const { user } = this.props;
+    return <div className="Userdetails">{JSON.stringify(user)}</div>;
   }
 }
 
@@ -44,7 +24,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateUser: item => {
+    updateUserdetails: item => {
       dispatch({ type: 'USER/UPDATE', payload: item });
     }
   };
@@ -53,4 +33,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(User);
+)(Userdetails);

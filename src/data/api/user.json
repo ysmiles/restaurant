@@ -1,0 +1,8 @@
+{
+  "customer_id": 100,
+  "first_name": "Tom",
+  "last_name": "Mot",
+  "phone_number": 1231231234,
+  "email": "a@bcd.com",
+  "address": "One Washington Square, San Jose, CA 95192"
+}

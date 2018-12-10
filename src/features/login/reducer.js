@@ -1,15 +1,13 @@
 const initialstate = {
   loginStatus: false,
-  userinfo: {}
+  customer_id: 0
 };
 
 function reducer(state = initialstate, action) {
   if (action && action.type === 'LOGIN_STATUS') {
     return {
-      loginStatus: action.payload,
-      userinfo: {
-        username: 'Tom'
-      }
+      loginStatus: action.payload.status,
+      customer_id: action.payload.id
     };
   } else {
     return state;

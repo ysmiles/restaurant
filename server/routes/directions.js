@@ -39,7 +39,18 @@ router.get('/routes/fetchOne', async (ctx) => {
     let task = stored.pop();
     if(task) {
         fetched.push(task);
-        ctx.body = task.route;
+
+        let dummyTask = JSON.parse(JSON.stringify(task));
+
+        if("waypoints" in dummyTask.direction) {
+            dummyTask.direction.waypoints = dummyTask.direction.ori + "|" + dummyTask.direction.waypoints;
+        } else {
+            dummyTask.direction.waypoints = "" + dummyTask.direction.ori;
+        }
+
+        dummyTask.direction.ori = "1 Washington Sq, San Jose, CA 95192";
+
+        ctx.body = dummyTask;
     } else {
         ctx.body = {
             status: false,

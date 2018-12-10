@@ -28,7 +28,7 @@ class FoodListing extends React.Component {
     const { loadFoods } = this.props;
     // need real address
     // already added proxy to api server (in package.json)
-    fetchApi('get', '/foods.json').then(json => {
+    fetchApi('get', '/api/foods.json').then(json => {
       loadFoods(json);
     });
   }
@@ -48,16 +48,20 @@ class FoodListing extends React.Component {
               Paper can be used to build surface or other elements for your
               application.
             </Typography> */}
-            {foods.map(food => (
-              <Typography>
-                <FoodListItem
-                  food={food}
-                  addToCart={addToCart}
-                  removeFromCart={removeFromCart}
-                  cartItem={cart.filter(cartItem => cartItem.id === food.id)[0]}
-                />
-              </Typography>
-            ))}
+            {foods.error
+              ? ''
+              : foods.map(food => (
+                  <Typography>
+                    <FoodListItem
+                      food={food}
+                      addToCart={addToCart}
+                      removeFromCart={removeFromCart}
+                      cartItem={
+                        cart.filter(cartItem => cartItem.id === food.id)[0]
+                      }
+                    />
+                  </Typography>
+                ))}
           </div>
         </Paper>
         <MapModule />

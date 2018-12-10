@@ -54,7 +54,7 @@ router.get('/order', async (ctx) => {
                 where: {
                     customer_id: ctx.query.customerId
                 },
-                order: 'order_time DESC'
+                order: [['order_time', 'DESC']]
             })
             ctx.body = orders
         } catch (err) {

@@ -97,5 +97,32 @@ router
     	console.log("updated")
         return
     })
+    
+    .get('/driver/getOrderDetail', async (ctx) => {
+    	let orders_id = ctx.query.orders_id
+    	let orders = await Orders.findOne({where: {orders_id: orders_id}})
+    	let orders_restaurant = await Orders_restaurant.findOne({where: {orders_id: orders_id}})
+    	let restaurant = await Restaurant.findOne({where: {restaurant_id: orders_restaurant.restaurant_id}})
+    	let customer = await User.findOne({where: {customer_id: orders.customer_id}})
+    	
+    	let orders_items = await Orders.findAll({where: {orders_id: orders:id}})
+    	let items = []
+    	let quantity = []
+    	for(var i = 0; i < orders_items.length; i++) {
+    		let food = await Food.findOne({where: {item_id: order_items[i].item_id}})
+    		items.push(food.name)
+    		quantity.push(order_items[i].quantity)
+    	}
+		
+		ctx.body = {
+			customer_name: customer.first_name + " " + customer.last_name
+			customer_address: orders.address
+			restaurant_name: restaurant.name
+			restaurant_address: restaurant.address
+			items: items
+			quantity: quantity
+		}
+        return
+    })
 
 module.exports = router

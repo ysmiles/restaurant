@@ -8,6 +8,7 @@ import { reducer as ordersReducer } from './features/order';
 import { reducer as userReducer } from './features/user';
 import { reducer as searchbarReducer } from './features/searchbar';
 import { reducer as sidebarReducer } from './features/sidebar';
+import { reducer as mapReducer } from './features/map';
 
 // const win = window;
 
@@ -21,7 +22,8 @@ const reducer = combineReducers({
   orders: ordersReducer,
   user: userReducer,
   searchbar: searchbarReducer,
-  sidebar: sidebarReducer
+  sidebar: sidebarReducer,
+  mapStatus: mapReducer
 });
 
 const middlewares = [];
@@ -41,7 +43,9 @@ const persistedState = localStorage.getItem('reduxState')
 const store = createStore(reducer, persistedState, storeEnhancers);
 
 store.subscribe(() => {
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+  let theState = store.getState();
+  delete theState.mapStatus;
+  localStorage.setItem('reduxState', JSON.stringify(theState));
 });
 
 export default store;

@@ -60,7 +60,7 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const { left, toggleLoginStatus, history, loginInfo } = this.props;
+    const { left, logOut, user, history, loginInfo } = this.props;
 
     const sideList = (
       // <div className={classes.list}>
@@ -80,10 +80,7 @@ class Sidebar extends React.Component {
             key="My Orders"
             onClick={() => {
               history.push(
-                '/' +
-                  (loginInfo.loginStatus
-                    ? loginInfo.userinfo.username
-                    : 'login')
+                '/' + (loginInfo.loginStatus ? user.first_name : 'login')
               );
             }}
           >
@@ -100,7 +97,7 @@ class Sidebar extends React.Component {
               history.push(
                 '/' +
                   (loginInfo.loginStatus
-                    ? loginInfo.userinfo.username + '/details'
+                    ? user.first_name + '/details'
                     : 'login')
               );
             }}
@@ -125,7 +122,7 @@ class Sidebar extends React.Component {
             button
             key="Log out"
             onClick={() => {
-              toggleLoginStatus(false);
+              logOut();
               history.push('/');
             }}
           >
@@ -175,6 +172,7 @@ function mapStateToProps(state) {
   let props = Object.assign({}, state.sidebar);
   props = {
     loginInfo: state.login,
+    user: state.user,
     ...props
   };
   return props;
@@ -185,8 +183,9 @@ function mapDispatchToProps(dispatch) {
     toggleSidebar: item => {
       dispatch({ type: 'SIDEBAR/TOGGLE', payload: item });
     },
-    toggleLoginStatus: statusWant => {
-      dispatch({ type: 'LOGIN_STATUS', payload: statusWant });
+    logOut: () => {
+      dispatch({ type: 'LOGIN_STATUS', payload: { status: false } });
+      dispatch({ type: 'USER/RESET' });
     }
   };
 }

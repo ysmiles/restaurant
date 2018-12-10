@@ -4,8 +4,8 @@
  * The object in array follows this structure:
  *  {
  *      direction: {
- *          ori:
- *          dest:
+ *          original:
+ *          destination:
  *          mode: "driving"
  *          ?// waypoints:
  *       },

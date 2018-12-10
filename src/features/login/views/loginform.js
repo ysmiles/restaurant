@@ -10,10 +10,10 @@ const LoginForm = props => {
         <label>Login ID</label>
         <div>
           <Field
-            name="username"
+            name="email"
             component="input"
-            type="text"
-            placeholder="Username"
+            type="email"
+            placeholder="Username(Email)"
           />
         </div>
       </div>

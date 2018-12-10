@@ -10,7 +10,7 @@ export default function FoodListItem(props) {
       <img
         height={100}
         title={props.food.name}
-        src={`/images/${props.food.photo}`}
+        src={`/image/${props.food.photo}`}
       />
       <div>{props.food.description}</div>
       <div>{props.food.unit_price}</div>

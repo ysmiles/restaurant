@@ -14,25 +14,26 @@ class Order extends React.Component {
   componentDidMount() {
     const { loadOrders } = this.props;
 
-    loadOrders([
-      {
-        name: 'the order 1',
-        email: 'abc@xyz.com',
-        order_items: [
-          {
-            id: 1,
-            name: 'X',
-            description: 'This is good',
-            keywords: ['abc', 'def', 'xyz'],
-            image: '1-a.jpg',
-            age: ['0', '+'],
-            price: 10.24,
-            qty: 3
-          }
-        ]
-      }
-    ]);
-    // fetchApi("get", "address").then(json => {
+    // loadOrders([
+    //   {
+    //     name: 'the order 1',
+    //     email: 'abc@xyz.com',
+    //     order_items: [
+    //       {
+    //         id: 1,
+    //         name: 'X',
+    //         description: 'This is good',
+    //         keywords: ['abc', 'def', 'xyz'],
+    //         image: '1-a.jpg',
+    //         age: ['0', '+'],
+    //         price: 10.24,
+    //         qty: 3
+    //       }
+    //     ]
+    //   }
+    // ]);
+
+    // fetchApi("get", "/api/ordersFromApi").then(json => {
     //   loadOrders(json);
     // });
   }

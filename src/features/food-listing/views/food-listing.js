@@ -28,7 +28,7 @@ class FoodListing extends React.Component {
     const { loadFoods } = this.props;
     // need real address
     // already added proxy to api server (in package.json)
-    fetchApi('get', '/api/foods.json').then(json => {
+    fetchApi('get', '/api/foods').then(json => {
       loadFoods(json);
     });
   }

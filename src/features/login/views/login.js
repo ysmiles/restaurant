@@ -17,16 +17,16 @@ class Login extends Component {
   onSubmit(values) {
     let userinfo = values;
     const { changeLoginStatus, updateUser, history } = this.props;
-
-    // fetchApi("post", "/api/loginTrue.json", userinfo)
-    fetchApi('get', '/api/loginTrue.json')
+    // console.log(userinfo);
+    fetchApi('post', '/api/user/login', userinfo)
+      // fetchApi('get', '/api/loginTrue.json')
       .then(json => {
         changeLoginStatus(json);
         if (json.status) {
           fetchApi(
             'get',
-            // "/api/user?customerId=" + json.id
-            '/api/user.json'
+            '/api/user?customerId=' + json.id
+            // "/api/user.json"
           ).then(userDetails => {
             updateUser(userDetails);
             history.push('/' + userDetails.first_name);

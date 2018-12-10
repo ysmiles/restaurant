@@ -108,7 +108,7 @@ async function newRoute(ori, dest, id) {
             o.orderId = orderId;
             o.direction = direction;
             o.route = route.json;
-            console.log(o.route);
+            console.log(o.direction);
             stored.push(o);
             return o.route;
         } else {

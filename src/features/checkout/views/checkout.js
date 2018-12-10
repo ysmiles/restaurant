@@ -14,17 +14,17 @@ class Checkout extends React.Component {
   }
 
   submitOrder(values, cart) {
-    const { userinfo } = this.props;
-    const { address } = values.order;
+    const { user, resetCart } = this.props;
+    const { address } = values;
 
     // back-end submission API
     fetchApi('post', '/api/order', {
-      customer_id: userinfo.customer_id,
+      customer_id: user.customer_id,
       total_price: cart.reduce(
         (acc, item) => acc + item.unit_price * item.quantity,
         0
       ),
-      address: address || userinfo.address,
+      address: address || user.address,
       items: cart.map(item => ({
         item_id: item.item_id,
         quantity: item.quantity,
@@ -32,11 +32,13 @@ class Checkout extends React.Component {
       }))
       //  [{ item_id: 111, quantity: 1, subtotal: 0 }]
     }).then(json => {
-      if (json.errors) {
-        alert('wrong');
-        return;
-      }
-      document.location.href = `/orders/${json.id}`;
+      console.log(json);
+      resetCart();
+      // if (json.errors) {
+      //   alert("wrong");
+      //   return;
+      // }
+      // document.location.href = `/orders/${json.id}`;
     });
   }
 
@@ -56,8 +58,20 @@ class Checkout extends React.Component {
 function mapStateToProps(state) {
   return {
     cart: state.cart,
-    userinfo: state.login.userinfo
+    loginInfo: state.login,
+    user: state.user
   };
 }
 
-export default connect(mapStateToProps)(Checkout);
+function mapDispatchToProps(dispatch) {
+  return {
+    resetCart: () => {
+      dispatch({ type: 'CART/RESET' });
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Checkout);

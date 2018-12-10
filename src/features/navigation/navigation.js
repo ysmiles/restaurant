@@ -94,8 +94,8 @@ class Navigation extends React.Component {
 
         {loginStatus ? (
           <div>
+            {/* <Redirect from="/login" to={('/' + userinfo.username)} /> */}
             <Route exact path={'/' + userinfo.username} component={User} />
-            <Redirect from="/login" to={'/' + userinfo.username} />
           </div>
         ) : (
           ''

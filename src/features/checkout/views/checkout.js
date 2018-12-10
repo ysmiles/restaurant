@@ -14,8 +14,13 @@ class Checkout extends React.Component {
   }
 
   submitOrder(values, cart) {
-    const { user, resetCart } = this.props;
+    const { user, resetCart, history, loginInfo } = this.props;
     const { address } = values;
+
+    if (!loginInfo.loginStatus) {
+      history.push('/login');
+      return;
+    }
 
     // back-end submission API
     fetchApi('post', '/api/order', {
@@ -34,6 +39,7 @@ class Checkout extends React.Component {
     }).then(json => {
       console.log(json);
       resetCart();
+      history.push('/' + user.first_name);
       // if (json.errors) {
       //   alert("wrong");
       //   return;
@@ -66,7 +72,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     resetCart: () => {
-      dispatch({ type: 'CART/RESET' });
+      dispatch({ type: 'CART/CLEAR' });
     }
   };
 }

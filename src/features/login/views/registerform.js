@@ -7,13 +7,13 @@ const SimpleForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Username</label>
+        <label>Email</label>
         <div>
           <Field
-            name="username"
+            name="email"
             component="input"
-            type="text"
-            placeholder="Username"
+            type="email"
+            placeholder="Email"
           />
         </div>
       </div>
@@ -29,20 +29,42 @@ const SimpleForm = props => {
         </div>
       </div>
       <div>
-        <label>Email</label>
+        <label>First Name</label>
         <div>
           <Field
-            name="email"
+            name="first_name"
             component="input"
-            type="email"
-            placeholder="Email"
+            type="text"
+            placeholder="First Name"
+          />
+        </div>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <div>
+          <Field
+            name="last_name"
+            component="input"
+            type="text"
+            placeholder="Last Name"
+          />
+        </div>
+      </div>
+      <div>
+        <label>Phone Number</label>
+        <div>
+          <Field
+            name="phone_number"
+            component="input"
+            type="tel"
+            placeholder="Phone Number"
           />
         </div>
       </div>
       <div>
         <label>Area</label>
         <div>
-          <Field name="favoriteColor" component="select">
+          <Field name="favoriteArea" component="select">
             <option />
             <option value="SJ">San Jose</option>
             <option value="SF">San Francisco</option>

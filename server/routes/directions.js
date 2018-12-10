@@ -17,10 +17,10 @@ function translateRequest(direction) {
     res.destination = direction.destination;
 
     if("waypoints" in direction) {
-        let ws = direction.waypoints.split("|");
-        for(let i = 0; ws[i] != null; i++) {
+        let ws = new Set(direction.waypoints.split("|"));
+        for(let w of ws) {
             res.waypoints.push({
-                location: ws[i],
+                location: w,
                 stopover: true
               });
         }
@@ -74,6 +74,10 @@ router.get('/routes/fetchOne', async (ctx) => {
         } else {
             dummyTask.direction.waypoints = "" + dummyTask.direction.origin;
         }
+
+        let s = new Set(dummyTask.description.waypoints.split('|'))
+
+        dummyTask.direction.waypoints = [...s].join('|')
 
         dummyTask.direction.origin = "1 Washington Sq, San Jose, CA 95192";
 

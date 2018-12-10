@@ -29,6 +29,24 @@ router
 		let car_submodel = ctx.request.body.car_submodel
 		let car_color = ctx.request.body.car_color
         
+        let existed = await Driver.findOne({where: {email: email}})
+        if(existed.length > 0) {
+        	ctx.body = "existed"
+        	return
+        }
+        
+        let driver = Driver.create({first_name: first_name, last_name: last_name,
+                       				phone_number: phone_number, email: email,
+                       				password: password, license_plate: license_plate,
+                       				car_year: car_year, car_made: car_made,
+                       				car_model: car_model, car_submodel: car_submodel,
+                       				car_color: car_color})
+        if(driver.length == 0) {
+        	ctx.body = "error"
+        	return
+        }
+        
+        ctx.body = driver.driver_id
         return
     })
 

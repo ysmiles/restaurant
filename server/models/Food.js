@@ -33,6 +33,7 @@ const Food = sequelize.define('Food', {
     prepare_time: {type: Sequelize.INTEGER},
     unit_price: {type: Sequelize.DECIMAL(4, 2), allowNull: false},
     deleted: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
+    description: {type: Sequelize.STRING(200), defaultValue: null}
 }, {
     // don't add the timestamp attributes (updatedAt, createdAt)
     timestamps: false,

@@ -8,6 +8,12 @@ router.prefix('/api/');
 
 router
     .post('/driver/login', async (ctx) => {
+<<<<<<< HEAD
+		try {
+			let email = ctx.request.body.email
+			let password = ctx.request.body.password
+            let driver = await Driver.findOne({where: {email: email, password: password}})
+=======
 		let email = ctx.request.body.email
 		let password = ctx.request.body.password
         let driver = await Driver.findOne({where: {email: email, password: password}})
@@ -16,6 +22,7 @@ router
         	console.log("wrong email address or password")
         }
         else {
+>>>>>>> upstream/master
             ctx.body = driver
             console.log(driver)
         }

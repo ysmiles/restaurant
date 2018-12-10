@@ -69,7 +69,8 @@ router
         }
 
         try {
-            let food = JSON.parse(ctx.request.body)
+            let food = ctx.request.body
+            food.photo = "" + food.restaurant_id + food.name
             console.log('received: ' + food)
 
             let newFood = await Food.create(food)

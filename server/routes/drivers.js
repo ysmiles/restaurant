@@ -36,12 +36,12 @@ router
         	return
         }
         
-        let driver = Driver.create({first_name: first_name, last_name: last_name,
-                       				phone_number: phone_number, email: email,
-                       				password: password, license_plate: license_plate,
-                       				car_year: car_year, car_made: car_made,
-                       				car_model: car_model, car_submodel: car_submodel,
-                       				car_color: car_color})
+        let driver = await Driver.create({first_name: first_name, last_name: last_name,
+                       					  phone_number: phone_number, email: email,
+                       					  password: password, license_plate: license_plate,
+                       					  car_year: car_year, car_made: car_made,
+                       				      car_model: car_model, car_submodel: car_submodel,
+                       				      car_color: car_color})
         if(!driver) {
         	ctx.body = "error"
         	console.log("error")

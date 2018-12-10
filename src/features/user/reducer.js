@@ -1,21 +1,19 @@
-function funReturnNewState(state, payload) {
-  // function to change state, based on payload
-  return [];
-}
+const defaultState = {
+  customer_id: 0,
+  first_name: 'FirstName',
+  last_name: 'LastName',
+  phone_number: 1231231234,
+  email: 'a@bcd.com'
+};
 
-const templateReducer = function(state = [], action) {
+const templateReducer = function(state = defaultState, action) {
   switch (action.type) {
-    case 'TYPE_1': {
-      return funReturnNewState(state, action.payload);
+    case 'USER/UPDATE': {
+      return action.payload; // user information
     }
 
-    case 'TYPE_2': {
-      return [
-        {
-          payload: action.payload
-        },
-        ...state
-      ];
+    case 'USER/RESET': {
+      return defaultState;
     }
 
     default: {

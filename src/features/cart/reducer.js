@@ -41,6 +41,9 @@ const cartReducer = (state = [], action) => {
     case 'REMOVE_ALL':
       return sort(removeAllFromCart(state, action.payload));
 
+    case 'CART/CLEAR':
+      return [];
+
     default:
       return state;
   }

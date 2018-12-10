@@ -40,8 +40,8 @@ class Navigation extends React.Component {
   };
 
   render() {
-    const { cart, login, classes, history } = this.props;
-    const { loginStatus, userinfo } = login;
+    const { cart, login, classes, history, user } = this.props;
+    const { loginStatus } = login;
 
     return (
       <div className={classes.root}>
@@ -66,10 +66,10 @@ class Navigation extends React.Component {
             <Button
               color="inherit"
               onClick={() =>
-                history.push('/' + (loginStatus ? userinfo.username : 'login'))
+                history.push('/' + (loginStatus ? user.first_name : 'login'))
               }
             >
-              {loginStatus ? userinfo.username : 'Login'}
+              {loginStatus ? user.first_name : 'Login'}
             </Button>
 
             {/* <Button color="inherit" onClick={() => history.push('/orders')}>
@@ -94,8 +94,13 @@ class Navigation extends React.Component {
 
         {loginStatus ? (
           <div>
-            {/* <Redirect from="/login" to={('/' + userinfo.username)} /> */}
-            <Route exact path={'/' + userinfo.username} component={User} />
+            <Route exact path={'/' + user.first_name} component={User.orders} />
+            <Route
+              exact
+              path={'/' + user.first_name + '/details'}
+              component={User.details}
+            />
+            {/* <Redirect from="/login" to={('/' + user.first_name)} /> */}
           </div>
         ) : (
           ''
@@ -108,7 +113,8 @@ class Navigation extends React.Component {
 function mapStateToProps(state) {
   return {
     cart: state.cart,
-    login: state.login
+    login: state.login,
+    user: state.user
   };
 }
 

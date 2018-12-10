@@ -5,43 +5,58 @@ import { view as Cart } from '../../cart';
 import CheckoutForm from './form';
 import fetchApi from '../../../modules/fetch-api';
 
-function submitOrder(values, cart) {
-  const { email, name } = values.order;
+class Checkout extends React.Component {
+  constructor(props, context) {
+    super(props, context);
 
-  // back-end submission API
-  fetchApi('post', '/api/destination', {
-    order: {
-      name,
-      email,
-      order_items_attributes: cart.map(item => ({
-        food_id: item.food_id,
-        qty: item.quantity
+    // this.onSubmit = this.onSubmit.bind(this);
+    // this.refInput = this.refInput.bind(this);
+  }
+
+  submitOrder(values, cart) {
+    const { userinfo } = this.props;
+    const { address } = values.order;
+
+    // back-end submission API
+    fetchApi('post', '/api/order', {
+      customer_id: userinfo.customer_id,
+      total_price: cart.reduce(
+        (acc, item) => acc + item.unit_price * item.quantity,
+        0
+      ),
+      address: address || userinfo.address,
+      items: cart.map(item => ({
+        item_id: item.item_id,
+        quantity: item.quantity,
+        subtotal: item.quantity * item.unit_price
       }))
-    }
-  }).then(json => {
-    if (json.errors) {
-      alert('wrong');
-      return;
-    }
-    document.location.href = `/orders/${json.id}`;
-  });
-}
+      //  [{ item_id: 111, quantity: 1, subtotal: 0 }]
+    }).then(json => {
+      if (json.errors) {
+        alert('wrong');
+        return;
+      }
+      document.location.href = `/orders/${json.id}`;
+    });
+  }
 
-function Checkout(props) {
-  const { cart } = props;
+  render() {
+    const { cart } = this.props;
 
-  return (
-    <div className="Checkout">
-      <Cart />
+    return (
+      <div className="Checkout">
+        <Cart />
 
-      <CheckoutForm onSubmit={values => submitOrder(values, cart)} />
-    </div>
-  );
+        <CheckoutForm onSubmit={values => this.submitOrder(values, cart)} />
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state) {
   return {
-    cart: state.cart
+    cart: state.cart,
+    userinfo: state.login.userinfo
   };
 }
 

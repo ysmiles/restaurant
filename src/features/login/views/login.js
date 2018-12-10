@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
-import { submitLogin } from '../actions';
+// import { submitLogin } from "../actions";
 import fetchApi from '../../../modules/fetch-api';
 import LoginForm from './loginform';
 
@@ -16,14 +16,22 @@ class Login extends Component {
 
   onSubmit(values) {
     let userinfo = values;
+    const { changeLoginStatus, updateUser, history } = this.props;
 
-    fetchApi('post', 'address', userinfo)
+    // fetchApi("post", "/api/loginTrue.json", userinfo)
+    fetchApi('get', '/api/loginTrue.json')
       .then(json => {
-        if (json.errors) {
-          this.props.toggleLoginStatus(false);
-          throw 'log in failed';
+        changeLoginStatus(json);
+        if (json.status) {
+          fetchApi(
+            'get',
+            // "/api/user?customerId=" + json.id
+            '/api/user.json'
+          ).then(userDetails => {
+            updateUser(userDetails);
+            history.push('/' + userDetails.first_name);
+          });
         }
-        this.props.toggleLoginStatus(true);
       })
       .catch(error => {
         console.log(error);
@@ -70,11 +78,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: userinfo => {
-      dispatch(submitLogin(userinfo));
+    changeLoginStatus: newStatus => {
+      dispatch({ type: 'LOGIN_STATUS', payload: newStatus });
     },
-    toggleLoginStatus: statusWant => {
-      dispatch({ type: 'LOGIN_STATUS', payload: statusWant });
+    updateUser: userDetails => {
+      dispatch({ type: 'USER/UPDATE', payload: userDetails });
     }
   };
 };

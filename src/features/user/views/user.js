@@ -25,10 +25,13 @@ class User extends React.Component {
   refInput() {}
 
   render() {
+    const { user } = this.props;
     return (
       <div className="User">
-        <h3>This is the title</h3>
-        This is the content
+        <h3>
+          Hello, {user.first_name} {user.last_name}
+        </h3>
+        Here is your order:
         <Order />
       </div>
     );

@@ -65,10 +65,6 @@ public class MyTaskHistoryActivity extends AppCompatActivity
             Intent intent = new Intent(MyTaskHistoryActivity.this, MyCurrentTaskActivity.class);
             startActivity(intent);
         }
-        else if (id == R.id.nav_pending_task_list) {
-            Intent intent = new Intent(MyTaskHistoryActivity.this, PendingTaskListActivity.class);
-            startActivity(intent);
-        }
         else if (id == R.id.nav_my_task_history) {
             drawer.closeDrawer(GravityCompat.START);
             return true;

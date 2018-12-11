@@ -23,7 +23,7 @@
         android:visibility="invisible"/>
     <include layout="@layout/content_my_current_task"
         android:visibility="invisible"/>
-    <include layout="@layout/content_pending_task_list"
+    <include layout="@layout/content_fetch_task"
         android:visibility="invisible"/>
     <include layout="@layout/content_my_task_history"
         android:visibility="invisible"/>

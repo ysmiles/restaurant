@@ -107,7 +107,6 @@ router
     	let orders_id = ctx.request.body.orders_id
     	let orders = await Orders.findOne({where: {orders_id: orders_id}})
     	let customer = await User.findOne({where: {customer_id: orders.customer_id}})
-    	
     	let orders_items = await Orders_item.findAll({where: {orders_id: orders_id}})
     	let restaurant_name = ""
     	let restaurant_address = ""
